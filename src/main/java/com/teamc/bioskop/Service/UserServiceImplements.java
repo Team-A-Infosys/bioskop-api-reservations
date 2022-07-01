@@ -34,7 +34,7 @@ public class UserServiceImplements implements UserService{
      */
     public Optional<User> getUserById(Long users_Id){
         Optional<User> optionalUser = userRepository.findById(users_Id);
-        if(optionalUser.isEmpty()){
+        if(optionalUser == null){
             throw new ResourceNotFoundException("User not exist with id :" + users_Id);
         }
         return this.userRepository.findById(users_Id);
@@ -57,7 +57,7 @@ public class UserServiceImplements implements UserService{
     @Override
     public void deleteUserById(Long users_Id) {
         Optional<User> optionalUser = userRepository.findById(users_Id);
-        if(optionalUser.isEmpty()){
+        if(optionalUser == null){
             throw new ResourceNotFoundException("User not exist with id :" + users_Id);
         }
         User user = userRepository.getReferenceById(users_Id);
@@ -72,7 +72,7 @@ public class UserServiceImplements implements UserService{
      */
     public User updateUser(User user) throws Exception{
         Optional<User> optionalUser = userRepository.findById(user.getUserId());
-        if(optionalUser.isEmpty()){
+        if(optionalUser == null){
             throw new ResourceNotFoundException("User not exist with id :" + user.getUserId());
         }
         return this.userRepository.save(user);

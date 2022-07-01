@@ -1,7 +1,7 @@
 package com.teamc.bioskop.Model;
 
-import com.teamc.bioskop.DTO.BookingResponseDTO;
-import com.teamc.bioskop.DTO.BookingResponsePost;
+import com.teamc.bioskop.Response.BookingResponseDTO;
+import com.teamc.bioskop.Response.BookingResponsePost;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,8 +34,6 @@ public class Booking {
 
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
-
-
 
     public BookingResponseDTO convertToResponse(){
         return BookingResponseDTO.builder()

@@ -1,6 +1,5 @@
 package com.teamc.bioskop.Service;
 
-import com.teamc.bioskop.Model.User;
 import com.teamc.bioskop.Repository.ScheduleRepository;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Schedule;
@@ -28,7 +27,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     //Get By ID
     public Optional<Schedule> getScheduleById(Integer Id) throws ResourceNotFoundException{
         Optional<Schedule> optionalSchedule = this.scheduleRepository.findById(Id);
-        if(optionalSchedule.isEmpty()){
+        if(optionalSchedule == null){
             throw new ResourceNotFoundException("Schedule not exist with id : " + Id);
         }
         return this.scheduleRepository.findById(Id);
@@ -43,7 +42,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule updateSchedule(Schedule schedule) {
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(schedule.getScheduleId());
-        if(optionalSchedule.isEmpty()){
+        if(optionalSchedule == null){
             throw new ResourceNotFoundException("User not exist with id : " + schedule.getScheduleId());
         }
         return this.scheduleRepository.save(schedule);
@@ -56,7 +55,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     //Delete
     public void deleteScheduleById(Integer Id){
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(Id);
-        if(optionalSchedule.isEmpty()){
+        if(optionalSchedule == null){
             throw new ResourceNotFoundException("Schedule not exist with id : " + Id);
         }
             Schedule schedule = scheduleRepository.getReferenceById(Id) ;
@@ -76,7 +75,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> getScheduleByFilmNameLike(String name) {
         List<Schedule> getScheduleByFilmNameLike = this.scheduleRepository.getScheduleFilmsNameLike(name);
-        if (getScheduleByFilmNameLike.isEmpty()){
+        if (getScheduleByFilmNameLike == null){
             throw new ResourceNotFoundException("Schedule with film name " + name + " is not exist!!!!!");
         }
         return this.scheduleRepository.getScheduleFilmsNameLike(name);

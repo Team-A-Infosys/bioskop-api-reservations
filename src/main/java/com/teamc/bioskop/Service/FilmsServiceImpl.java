@@ -29,7 +29,7 @@ public class FilmsServiceImpl implements FilmsService {
     @Override
     public Optional<Films> findbyId(Long filmId){
         Optional<Films> optionalFilms = filmsRepository.findById(filmId);
-        if(optionalFilms.isEmpty()){
+        if(optionalFilms == null){
             throw new ResourceNotFoundException("Films not exist with id : " + filmId);
         }
         return filmsRepository.findById(filmId);
@@ -49,7 +49,7 @@ public class FilmsServiceImpl implements FilmsService {
     @Override
     public Films updateFilm(Films films, Long filmId) {
         Optional<Films> optionalFilms = filmsRepository.findById(filmId);
-        if(optionalFilms.isEmpty()){
+        if(optionalFilms == null){
             throw new ResourceNotFoundException("Films not exist with id : " + filmId);
         }
         return filmsRepository.save(films);
@@ -58,7 +58,7 @@ public class FilmsServiceImpl implements FilmsService {
     @Override
     public void deleteFilmById(Long filmId){
         Optional<Films> optionalFilms = filmsRepository.findById(filmId);
-        if(optionalFilms.isEmpty()){
+        if(optionalFilms == null){
             throw new ResourceNotFoundException("Films not exist with id : " + filmId);
         }
         filmsRepository.deleteAllById(Collections.singleton(filmId));

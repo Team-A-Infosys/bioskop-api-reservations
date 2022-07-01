@@ -1,4 +1,4 @@
-package com.teamc.bioskop.DTO;
+package com.teamc.bioskop.Response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;

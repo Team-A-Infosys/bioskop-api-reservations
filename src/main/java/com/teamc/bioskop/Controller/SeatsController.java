@@ -1,6 +1,5 @@
 package com.teamc.bioskop.Controller;
 
-import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Response.ResponseHandler;
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:8083")
 @RestController
-@RequestMapping("/teamC/v1")
 public class SeatsController {
 
     private static final Logger logger = LogManager.getLogger(SeatsController.class);

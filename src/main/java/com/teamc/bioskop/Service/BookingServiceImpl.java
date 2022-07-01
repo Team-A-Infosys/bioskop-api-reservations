@@ -30,7 +30,7 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public Optional<Booking> getBookingById(Long Id) throws ResourceNotFoundException {
         Optional<Booking> optionalBooking = bookingRepository.findById(Id);
-        if(optionalBooking.isEmpty()){
+        if(optionalBooking == null){
             throw new ResourceNotFoundException("Booking not exist with id " + Id);
         }
         return this.bookingRepository.findById(Id);
@@ -39,7 +39,7 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public Booking updateBooking(Booking booking) throws ResourceNotFoundException {
         Optional<Booking> optionalBooking = bookingRepository.findById(booking.getBookingId());
-        if(optionalBooking.isEmpty()){
+        if(optionalBooking == null){
             throw new ResourceNotFoundException("Booking not exist with id " + booking.getBookingId());
         }
         return this.bookingRepository.save(booking);
@@ -58,7 +58,7 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public void deleteSBookingById(Long Id) throws ResourceNotFoundException{
         Optional<Booking> optionalBooking = bookingRepository.findById(Id);
-        if(optionalBooking.isEmpty()){
+        if(optionalBooking == null){
             throw new ResourceNotFoundException("Booking not exist with id " + Id);
         }
         Booking booking = bookingRepository.getReferenceById(Id);

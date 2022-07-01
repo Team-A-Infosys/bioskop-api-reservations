@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface BookingRepository extends JpaRepository<Booking,Long> {
     @Query("Select b from Booking b where b.schedule.films.name like %:name%")
-    public List<Booking> getBookingByFilmName(@Param("name")String name);
+    List<Booking> getBookingByFilmName(@Param("name")String name);
 
 }
-

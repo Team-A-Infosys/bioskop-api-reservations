@@ -15,12 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-/***
- * Edited By Rendra
- */
 
 @RestController
-@RequestMapping("/teamC/v1/")
 @AllArgsConstructor
 public class UserController {
 

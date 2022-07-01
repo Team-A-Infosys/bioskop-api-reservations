@@ -1,8 +1,8 @@
 package com.teamc.bioskop.Controller;
 
 import com.teamc.bioskop.DTO.BookingRequestDTO;
-import com.teamc.bioskop.DTO.BookingResponseDTO;
-import com.teamc.bioskop.DTO.BookingResponsePost;
+import com.teamc.bioskop.Response.BookingResponseDTO;
+import com.teamc.bioskop.Response.BookingResponsePost;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.*;
 import com.teamc.bioskop.Response.ResponseHandler;
@@ -18,15 +18,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/teamC/v1/DTO")
 @AllArgsConstructor
 public class BookingController {
 
     private static final Logger logger = LogManager.getLogger(BookingController.class);
     private static final String Line = "====================";
     private BookingService bookingService;
-    private ScheduleService scheduleService;
-    private SeatsService seatsService;
 
 
     /**
@@ -183,8 +180,3 @@ public class BookingController {
 
 
 }
-
-
-
-
-

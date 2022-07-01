@@ -1,4 +1,4 @@
-package com.teamc.bioskop.DTO;
+package com.teamc.bioskop.Response;
 
 import lombok.*;
 

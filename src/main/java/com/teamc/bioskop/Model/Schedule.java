@@ -1,16 +1,15 @@
 package com.teamc.bioskop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.teamc.bioskop.DTO.ScheduleResponseDTO;
-import com.teamc.bioskop.DTO.ScheduleResponseFilmSeatDTO;
-import com.teamc.bioskop.DTO.ScheduleResponseNameLikeDTO;
+import com.teamc.bioskop.Response.ScheduleResponseDTO;
+import com.teamc.bioskop.Response.ScheduleResponseFilmSeatDTO;
+import com.teamc.bioskop.Response.ScheduleResponseNameLikeDTO;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 

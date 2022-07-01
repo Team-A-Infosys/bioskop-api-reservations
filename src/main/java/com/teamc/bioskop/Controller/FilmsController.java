@@ -14,7 +14,6 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/teamC/v1")
 public class FilmsController {
 
     private static final Logger logger = LogManager.getLogger(FilmsController.class);
