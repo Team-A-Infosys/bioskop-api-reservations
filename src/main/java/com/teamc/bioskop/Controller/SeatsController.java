@@ -63,7 +63,7 @@ public class SeatsController {
         try{
             Seats result = seatsService.createseat(seat);
             logger.info(Line + " Logger Start Create " + Line);
-            logger.info(seatsService.createseat(seat));
+            logger.info(result);
             logger.info(Line +" Logger END GCreate "+ Line);
             return ResponseHandler.generateResponse("Succesfully Add Data Seats !", HttpStatus.CREATED, result);
         }catch (Exception e) {
@@ -129,7 +129,7 @@ public class SeatsController {
     @DeleteMapping("/seats/{seatId}")
     public ResponseEntity<Object> deleteseats(@PathVariable Long seatId){
         try{
-            Optional<Seats> seats = seatsService.findbyid(seatId);
+            seatsService.deleteseat(seatId);
             Map<String, Boolean> respone = new HashMap<>();
             respone.put("deleted", Boolean.TRUE);
             ResponseEntity<Map<String, Boolean>> delete = ResponseEntity.ok(respone);
