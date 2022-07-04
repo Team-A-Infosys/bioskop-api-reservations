@@ -104,7 +104,7 @@ public class BookingController {
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"Bad Request");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Not Found!");
         }
     }
     /**
@@ -142,13 +142,14 @@ public class BookingController {
             bookingService.deleteSBookingById(id);
             Boolean result = Boolean.TRUE;
             logger.info(Line + " Logger Start Delete Booking " + Line);
-            logger.info("Success Delete Booking by ID :"+result);
-            logger.info(Line + " Logger End Delete Booking " + Line);
-            return ResponseHandler.generateResponse("Success Delete Booking by ID",HttpStatus.OK,result);
-        }catch(ResourceNotFoundException e){
-            logger.error(Line + " Logger Start Error " + Line);
-            logger.error(e.getMessage());
-            logger.error(Line + " Logger End Error " + Line);
+            logger.info("Success Delete Booking " + id);
+            logger.info(Line + " Logger Finish Delete Booking " + Line);
+            return ResponseHandler.generateResponse("Success Delete Data",HttpStatus.OK,result);
+            }
+            catch(Exception e){
+            logger.error(Line + " Logger Error Delete Booking " + Line);
+            logger.error(" Failed Delete Booking by ID :"+ id);
+            logger.error(Line + " Logger Error Delete Booking " + Line);
             return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data not found");
         }
     }
@@ -159,7 +160,7 @@ public class BookingController {
      *throws ResourceNotFoundException if film name is not found
      */
     @PostMapping("/booking/Filmname")
-    public ResponseEntity<Object> findBookingBySchdeuleFilmName(@RequestBody Films films){
+    public ResponseEntity<Object> findBookingBySchdeuleFilmName(@RequestBody Films films ) throws ResourceNotFoundException{
         try {
             List<Booking> bookingByScheduleFilmsname = bookingService.getBookingByFilmName(films.getName());
             List<BookingResponseDTO> bookingResponseDTOS = bookingByScheduleFilmsname.stream()
@@ -168,12 +169,12 @@ public class BookingController {
             logger.info(Line+" Logger Start Query By Film Name Booking "+Line);
             logger.info("Success Query By Filmname : " +bookingResponseDTOS);
             logger.info(Line+" Logger End Query By Film Name Booking "+Line);
-            return ResponseHandler.generateResponse("Succes Query By Filmname",HttpStatus.OK,bookingResponseDTOS);
-        }catch (Exception e){
+            return ResponseHandler.generateResponse("Succes Added Data By Filmname",HttpStatus.OK,bookingResponseDTOS);
+        }catch (ResourceNotFoundException e){
             logger.error(Line + " Logger Start Error " + Line);
             logger.error(e.getMessage());
             logger.error(Line + " Logger End Error " + Line);
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"Failed Query By Filename");
+            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Film Name is Not Exist");
         }
 
     }
