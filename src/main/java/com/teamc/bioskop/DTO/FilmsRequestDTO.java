@@ -1,6 +1,7 @@
 package com.teamc.bioskop.DTO;
 
 import com.teamc.bioskop.Model.Films;
+import com.teamc.bioskop.Model.StatusFilms;
 import lombok.*;
 
 @Getter
@@ -10,7 +11,7 @@ import lombok.*;
 @Builder
 public class FilmsRequestDTO {
     private String title;
-    private Integer status;
+    private StatusFilms status;
 
     public Films convertToEntity(){
         return Films.builder()
