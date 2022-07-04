@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div th:switch="${seats}">
+            <h2 th:case="null">No seats yet!</h2>
+            <div th:case="*">
+                <h2>Kursi Bioskop</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>No Kursi</th>
+                        <th>Studio</th>
+                        <th>Available</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="seat : ${seats}">
+                        <td th:text="${seat.seatNumber}"></td>
+                        <td th:text="${seat.studioName}"></td>
+                        <td th:text="${seat.isAvailable}"></td>
+        <!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
+        <!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!--    <p><a href="/signup">Add a new user</a></p>-->
+        </div>
+    </div>
+</body>
+</html>
