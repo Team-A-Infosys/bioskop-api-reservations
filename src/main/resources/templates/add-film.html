@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bioskop Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+<form action="#" th:action="@{/tambah-film}" th:object="${film}" method="post">
+    <label class="form-label" for="name">Film Name</label>
+    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+<!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+    <label class="form-label" for="isPlaying">Status</label>
+    <input class="form-control" type="text" th:field="*{isPlaying}" id="isPlaying" placeholder="Please input with UPPERCASE">
+<!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+    <button type="submit" class="btn btn-info">Add film</button>
+</form>
+
+</div>
+</body>
+</html>

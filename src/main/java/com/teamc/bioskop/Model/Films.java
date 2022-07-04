@@ -23,7 +23,9 @@ public class Films {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long filmId;
     private String name;
-    private Integer isPlaying;
+
+    @Enumerated(EnumType.STRING)
+    private StatusFilms isPlaying;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

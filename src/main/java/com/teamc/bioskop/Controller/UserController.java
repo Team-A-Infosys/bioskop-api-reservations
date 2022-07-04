@@ -111,7 +111,7 @@ public class UserController {
     public ResponseEntity <Object> createUser(@RequestBody User user) {
 
         try {
-            userServiceImplements.createUser(user);
+//            userServiceImplements.createUser(user);
             User userResult = userServiceImplements.createUser(user);
             Map<String, Object> userMap = new HashMap<>();
             List<Map<String, Object>> maps = new ArrayList<>();

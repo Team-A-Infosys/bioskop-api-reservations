@@ -1,6 +1,6 @@
 package com.teamc.bioskop.Response;
 
-import com.teamc.bioskop.Model.StatusFilms;
+
 import lombok.*;
 
 @Getter
@@ -8,17 +8,18 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FilmsResponseDTO {
+public class SeatsResponseDTO {
     private Long code;
-    private String title;
-    private StatusFilms status;
+    private Integer status;
+    private String studio;
+    private Long seat;
 
-    @Override
     public String toString() {
-        return "FilmsResponseDTO{" +
+        return "SeatsResponseDTO{" +
                 "code=" + code +
-                ", title='" + title + '\'' +
                 ", status=" + status +
+                ", studio=" + studio +
+                ", seat=" + seat +
                 '}';
     }
 }
