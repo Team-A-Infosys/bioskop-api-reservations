@@ -14,16 +14,35 @@
         <div th:case="*">
             <h2>Films</h2>
             <table class="table">
+                <div class="container">
+                <a th:href="@{/add-film}" class="btn btn-primary btn-sm">Add Film</a>
+                </div>
+                <div class="container mt-4">
+                    <div class="col-sm-4">
+                        <form action="#" th:action="@{/films-status}" method="get">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="isPlaying" placeholder="Status Film" aria-label="Status" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+                            </div>
+<!--                            <input class="form-control" type="text" name="isPlaying" id="isPlaying" placeholder="Search Status Film">-->
+<!--                            <a type="submit" class="btn btn-primary mt-4">Search status film</a>-->
+                        </form>
+                    </div>
+                </div>
                 <thead>
                 <tr>
                     <th scope="col">Film Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="film : ${films}">
                     <td th:text="${film.name}"></td>
                     <td th:text="${film.isPlaying}"></td>
+                    <td><a th:href="@{/edit-film/{id}(id=${film.filmId})}">Edit</a></td>
+                    <td><a th:href="@{/delete-film/{id}(id=${film.filmId})}" onclick="return confirm('Yakin mau menghapus data ini ?')">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

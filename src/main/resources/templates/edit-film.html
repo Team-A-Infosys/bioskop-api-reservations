@@ -9,10 +9,10 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="text-center">Add New Film</h2>
+    <h2 class="text-center">Edit Film</h2>
     <div class="row justify-content-center">
         <div class="col-sm-4 py-5" style="border: 1px solid">
-            <form action="#" th:action="@{/tambah-film}" th:object="${film}" method="post">
+            <form action="#" th:action="@{/update-film/{id}(id=${film.filmId})}" th:object="${film}" method="post">
                 <div class="mt-3">
 
                 <label class="form-label" for="name">Film Name</label>
@@ -25,7 +25,7 @@
                 <input class="form-control" type="text" th:field="*{isPlaying}" id="isPlaying" placeholder="Please input with UPPERCASE">
                 </div>
                 <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
-                <button type="submit" class="btn btn-primary mt-4">Add film</button>
+                <button type="submit" class="btn btn-primary mt-4">Edit film</button>
             </form>
         </div>
     </div>

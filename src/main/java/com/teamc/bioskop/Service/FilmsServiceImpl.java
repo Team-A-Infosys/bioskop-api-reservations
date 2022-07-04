@@ -66,12 +66,7 @@ public class FilmsServiceImpl implements FilmsService {
     }
 
     public  List<Films> getByIsPlaying(StatusFilms isPlaying){
-        List<Films> optionalFilms = filmsRepository.getFilmByIsPlaying(isPlaying);
-        if (optionalFilms.isEmpty()){
-            throw new ResourceNotFoundException("Films not exist with status available : " + isPlaying);
-        }
-
-        return this.filmsRepository.getFilmByIsPlaying(isPlaying);
+       return this.filmsRepository.findFilmByIsPlaying(isPlaying);
     }
 
 
