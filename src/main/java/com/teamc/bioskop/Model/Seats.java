@@ -1,6 +1,7 @@
 package com.teamc.bioskop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.teamc.bioskop.Response.SeatsResponseDTO;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,12 +35,12 @@ public class Seats {
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
 
-    public Seats(long seatId, long seatNumber, String studioName, int isAvailable){
-        super();
-        this.seatId = seatId;
-        this.seatNumber = seatNumber;
-        this.studioName = studioName;
-        this.isAvailable = isAvailable;
+    public SeatsResponseDTO convertToResponse(){
+        return SeatsResponseDTO.builder().code(this.seatId)
+                .status(this.isAvailable)
+                .seat(this.seatNumber)
+                .studio(this.studioName)
+                .build();
     }
 
     public Long getSeatId() {
