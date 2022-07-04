@@ -63,7 +63,7 @@ public class SeatsServiceImpl implements SeatsService {
     }
 
     @Override
-    public List<Seats> getSeatAvailable(Integer isAvailable) {
+    public List<Seats> getSeatAvailable(String isAvailable) {
         List<Seats> optionalSeats = seatRepository.getSeatAvailable(isAvailable);
         if (optionalSeats == null){
             throw new ResourceNotFoundException("Seats not exist with id : " + isAvailable);

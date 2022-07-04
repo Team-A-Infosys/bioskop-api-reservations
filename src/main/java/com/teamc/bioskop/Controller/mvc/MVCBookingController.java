@@ -41,6 +41,8 @@ public class MVCBookingController {
 
     @PostMapping("/tambah-bookings")
     public String submitNewBooking(@ModelAttribute("bookings") Booking booking){
+        this.bookingService.createBooking(booking);
+
         return"success";
     }
 }

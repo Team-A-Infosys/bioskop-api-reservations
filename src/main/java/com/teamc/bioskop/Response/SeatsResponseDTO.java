@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class SeatsResponseDTO {
     private Long code;
-    private Integer status;
+    private String status;
     private String studio;
     private Long seat;
 

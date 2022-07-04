@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="container">
+    <h1 class="">table</h1>
+    <form action="#" th:action="@{/tambah-bookings}" th:object="${bookings}" method="post">
+        <label class="form-label" for="userId">user</label>
+        <input class="form-control" type="number" th:field="*{user.userId}" id="userId" placeholder="Please input with userId">
+        <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+        <label class="form-label" for="scheduleId">Schedule</label>
+        <input class="form-control" type="number" th:field="*{schedule.scheduleId}" id="scheduleId" placeholder="Please input with scheduleId">
+        <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+        <button type="submit" class="btn btn-info">Add new Schedule</button>
+    </form>
+
+</div>
 
 </body>
 </html>

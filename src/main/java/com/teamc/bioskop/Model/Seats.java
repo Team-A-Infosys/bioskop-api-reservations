@@ -26,7 +26,7 @@ public class Seats {
     private String studioName;
 
     @Column(name = "is_available")
-    private int isAvailable;
+    private String isAvailable;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -72,12 +72,12 @@ public class Seats {
         this.studioName = studioName;
     }
 
-    public int getIsAvailable() {
+    public String getIsAvailable() {
 
         return isAvailable;
     }
 
-    public void setIsAvailable(int isAvailable) {
+    public void setIsAvailable(String isAvailable) {
 
         this.isAvailable = isAvailable;
     }

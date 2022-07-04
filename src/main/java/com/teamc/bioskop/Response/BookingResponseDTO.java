@@ -23,7 +23,7 @@ public class BookingResponseDTO {
     private String studio;
     private StatusFilms status_show;
     private Long seat_num;
-    private Integer status_seat;
+    private String status_seat;
     private LocalDate date_film;
     private LocalTime start_film;
     private LocalTime end_film;

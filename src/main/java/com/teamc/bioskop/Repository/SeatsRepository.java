@@ -9,5 +9,5 @@ import java.util.*;
 @Repository
 public interface SeatsRepository extends JpaRepository<Seats, Long> {
     @Query(value = "select * from seats s where is_available =?1", nativeQuery = true)
-    public List<Seats> getSeatAvailable(Integer isAvailable);
+    public List<Seats> getSeatAvailable(String isAvailable);
 }
