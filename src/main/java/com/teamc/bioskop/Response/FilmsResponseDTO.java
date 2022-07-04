@@ -1,5 +1,6 @@
 package com.teamc.bioskop.Response;
 
+import com.teamc.bioskop.Model.StatusFilms;
 import lombok.*;
 
 @Getter
@@ -10,7 +11,7 @@ import lombok.*;
 public class FilmsResponseDTO {
     private Long code;
     private String title;
-    private Integer status;
+    private StatusFilms status;
 
     @Override
     public String toString() {
