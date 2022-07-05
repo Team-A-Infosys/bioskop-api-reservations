@@ -4,6 +4,7 @@ import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Model.Seats;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,8 +19,13 @@ public class ScheduleRequestDTO {
     private Integer scheduleId;
     private Films films;
     private Seats seats;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateShow;
+
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime showStart;
+
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime showEnd;
     private Integer price;
 
