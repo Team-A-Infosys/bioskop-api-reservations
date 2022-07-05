@@ -2,6 +2,7 @@ package com.teamc.bioskop.Response;
 
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Model.StatusFilms;
+import com.teamc.bioskop.Model.StatusSeats;
 import com.teamc.bioskop.Model.User;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class BookingResponseDTO {
     private String studio;
     private StatusFilms status_show;
     private Long seat_num;
-    private Integer status_seat;
+    private StatusSeats status_seat;
     private LocalDate date_film;
     private LocalTime start_film;
     private LocalTime end_film;
