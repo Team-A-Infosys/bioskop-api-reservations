@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 
-    <form action="#" th:action="@{/updated/schedule/{id}(id=${schedule.scheduleId})}" th:object="${schedule}" method="post">
+    <form action="#" th:action="@{/delete/schedule/{id}(id=${schedule.scheduleId})}" th:object="${schedule}" method="post">
         <label class="form-label" for="filmId">Film Id</label>
         <input class="form-control" type="text" th:field="*{films.filmId}" id="filmId" placeholder="Place your Id">
         <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
@@ -29,7 +29,7 @@
         <label class="form-label" for="showEnd">Show End</label>
         <input class="form-control" type="text" th:field="*{showEnd}" id="showEnd" >
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
-        <button type="submit" class="btn btn-info">Update Schedule</button>
+        <button type="submit" class="btn btn-info">Delete Schedule</button>
     </form>
 
 </div>
