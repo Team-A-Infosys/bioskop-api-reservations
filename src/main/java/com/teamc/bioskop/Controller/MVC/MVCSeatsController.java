@@ -1,17 +1,14 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.validation.Valid;
 
 @Controller
 @AllArgsConstructor

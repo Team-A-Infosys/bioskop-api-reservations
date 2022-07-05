@@ -2,6 +2,7 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Model.User;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,3 +16,4 @@ public interface UserService {
     User getReferenceById(Long Id);
     Optional<User> findbyid(Long id);
 }
+

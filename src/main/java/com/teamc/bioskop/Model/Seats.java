@@ -26,6 +26,8 @@ public class Seats {
     private long seatNumber;
 
     private String studioName;
+
+    @Column(name = "is_available")
     @Enumerated(EnumType.STRING)
     private StatusSeats isAvailable;
 
@@ -43,7 +45,6 @@ public class Seats {
                 .studio(this.studioName)
                 .build();
     }
-
     @Override
     public String toString() {
         return "Seats{" +

@@ -4,16 +4,18 @@ import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.User;
 import com.teamc.bioskop.Repository.UserRepository;
 import com.teamc.bioskop.Response.ResponseHandler;
-
 import com.teamc.bioskop.Service.UserServiceImplements;
 import lombok.AllArgsConstructor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.http.ResponseEntity;
-import java.util.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController

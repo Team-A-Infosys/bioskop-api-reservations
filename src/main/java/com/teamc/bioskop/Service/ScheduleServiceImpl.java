@@ -1,8 +1,8 @@
 package com.teamc.bioskop.Service;
 
-import com.teamc.bioskop.Repository.ScheduleRepository;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Schedule;
+import com.teamc.bioskop.Repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
