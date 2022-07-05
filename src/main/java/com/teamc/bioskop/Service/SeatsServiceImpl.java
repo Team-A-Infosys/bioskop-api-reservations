@@ -1,6 +1,7 @@
 package com.teamc.bioskop.Service;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Seats;
+import com.teamc.bioskop.Model.StatusSeat;
 import com.teamc.bioskop.Repository.SeatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +64,7 @@ public class SeatsServiceImpl implements SeatsService {
     }
 
     @Override
-    public List<Seats> getSeatAvailable(Integer isAvailable) {
+    public List<Seats> getSeatAvailable(StatusSeat isAvailable) {
         List<Seats> optionalSeats = seatRepository.getSeatAvailable(isAvailable);
         if (optionalSeats == null){
             throw new ResourceNotFoundException("Seats not exist with id : " + isAvailable);
