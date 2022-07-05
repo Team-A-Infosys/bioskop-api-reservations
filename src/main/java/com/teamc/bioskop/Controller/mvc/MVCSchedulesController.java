@@ -36,7 +36,7 @@ private ScheduleService scheduleService;
     @PostMapping("/tambah-schedule")
     public String submitSchedule(@ModelAttribute("schedule")Schedule schedules) {
         this.scheduleService.createSchedule(schedules);
-        return "success";
+        return "redirect:/Schedules";
     }
     @GetMapping("/update/schedule/{id}")
     public String showEditSchedule(Model model, @PathVariable ("id")Integer id) {
@@ -52,11 +52,9 @@ private ScheduleService scheduleService;
             return "redirect:/Schedules";
     }
 
-//    @GetMapping("/delete/{id}")
-//    public String deleteUser(@PathVariable("id") Integer id, Model model) {
-//        Schedules schedules = ScheduleRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid Schedule ID:" + id));
-//        ScheduleRepository.delete(schedules);
-//        return "redirect:/index";
-//    }
+    @GetMapping("/delete/{id}")
+    public String deleteSchedule(@PathVariable("id") Integer id) {
+        this.scheduleService.deleteScheduleById(id);
+        return "redirect:/Schedules";
+    }
 }
