@@ -9,38 +9,46 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div class="">table</div>
-<div th:switch="${bookings}">
-    <h2 th:case="null">No bookings yet!</h2>
-    <div th:case="*">
-        <h2>Booking</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>User</th>
-                <th>filmname</th>
-                <th>seats</th>
-                <th>studioname</th>
-                <th>tanggaltayang</th>
-<!--                <th>Edit</th>-->
-<!--                <th>Delete</th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="booking : ${bookings}">
-                <td th:text="${booking.user.username}"></td>
-                <td th:text="${booking.schedule.films.name}"></td>
-                <td th:text="${booking.schedule.seats.seatNumber}"></td>
-                <td th:text="${booking.schedule.seats.studioName}"></td>
-                <td th:text="${booking.schedule.dateShow}"></td>
-<!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
-<!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
-            </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <h1 class="">table</h1>
+    <div class="row">
+        <div class="col-8 mx-auto">
+            <div th:switch="${bookings}">
+                <h2 th:case="null">No bookings yet!</h2>
+                <div th:case="*">
+                    <h2 class="text-center">Booking</h2>
+                    <h3 th:case="null">No bookings yet!</h3>
+                    <table class="table table-danger table-striped">
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>filmname</th>
+                            <th>seats</th>
+                            <th>studioname</th>
+                            <th>tanggaltayang</th>
+                                            <th>Edit</th>
+<!--                                            <th>Delete</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="booking : ${bookings}">
+                            <td th:text="${booking.user.username}"></td>
+                            <td th:text="${booking.schedule.films.name}"></td>
+                            <td th:text="${booking.schedule.seats.seatNumber}"></td>
+                            <td th:text="${booking.schedule.seats.studioName}"></td>
+                            <td th:text="${booking.schedule.dateShow}"></td>
+                                            <td><a th:href="@{/update/bookings/{id}(id=${booking.bookingId})}">Edit</a></td>
+<!--                                            <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
 
+                </div>
+                <!--    <p><a href="/signup">Add a new user</a></p>-->
+            </div>
+        </div>
     </div>
-<!--    <p><a href="/signup">Add a new user</a></p>-->
 </div>
+
 </body>
 </html>
