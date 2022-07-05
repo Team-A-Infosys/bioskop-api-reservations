@@ -36,7 +36,7 @@ private ScheduleService scheduleService;
     @PostMapping("/tambah-schedule")
     public String submitSchedule(@ModelAttribute("schedule")Schedule schedules) {
         this.scheduleService.createSchedule(schedules);
-        return "redirect:/Schedules";
+        return "redirect:/schedule/AllSchedule";
     }
     @GetMapping("/update/schedule/{id}")
     public String showEditSchedule(Model model, @PathVariable ("id")Integer id) {
@@ -49,12 +49,12 @@ private ScheduleService scheduleService;
                                  @ModelAttribute("schedule")Schedule schedules) {
         schedules.setScheduleId(id);
             scheduleService.createSchedule(schedules);
-            return "redirect:/Schedules";
+            return "redirect:/schedule/AllSchedule";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/schedule/{id}")
     public String deleteSchedule(@PathVariable("id") Integer id) {
         this.scheduleService.deleteScheduleById(id);
-        return "redirect:/Schedules";
+        return "redirect:/schedule/AllSchedule";
     }
 }
