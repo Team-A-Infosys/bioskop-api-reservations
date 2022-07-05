@@ -22,7 +22,7 @@ public class MVCFilmController {
       return "films";
     }
 
-    @GetMapping("films-status")
+    @GetMapping("/films-status")
     public String showFilmByStatus(Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms ){
         model.addAttribute("films", filmsService.getByIsPlaying(statusFilms));
 
@@ -46,11 +46,11 @@ public class MVCFilmController {
         model.addAttribute("film", films);
         return "edit-film";
     }
-    @PostMapping("/update-film/{id}")
+    @PostMapping("/edit-film/{id}")
     public String updateFilm(@PathVariable("id") Long id, @ModelAttribute("film") Films films){
         films.setFilmId(id);
         this.filmsService.createFilm(films);
-        return "success";
+        return "redirect:/films";
     }
     @GetMapping("/delete-film/{id}")
     public String deleteFilm(@PathVariable("id") Long id){

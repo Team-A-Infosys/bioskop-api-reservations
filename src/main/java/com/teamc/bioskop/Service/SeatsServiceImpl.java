@@ -3,6 +3,7 @@ import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Model.StatusSeats;
 import com.teamc.bioskop.Repository.SeatsRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class SeatsServiceImpl implements SeatsService {
 
     private final SeatsRepository seatRepository;
-
-    @Autowired
-    public SeatsServiceImpl(SeatsRepository seatRepository) {
-        this.seatRepository = seatRepository;
-    }
 
     public List<Seats> findAllseats() {
 

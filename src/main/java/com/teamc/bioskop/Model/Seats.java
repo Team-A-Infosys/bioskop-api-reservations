@@ -2,9 +2,7 @@ package com.teamc.bioskop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.teamc.bioskop.Response.SeatsResponseDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,9 +11,11 @@ import java.time.ZonedDateTime;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Setter
 @Getter
+@Builder
 @Table(name = "seats")
 public class Seats {
 
@@ -23,13 +23,10 @@ public class Seats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatId;
 
-    @Column(name = "seat_number")
     private long seatNumber;
 
-    @Column(name = "studio_name")
     private String studioName;
 
-    @Column(name = "is_available")
     @Enumerated(EnumType.STRING)
     private StatusSeats isAvailable;
 
