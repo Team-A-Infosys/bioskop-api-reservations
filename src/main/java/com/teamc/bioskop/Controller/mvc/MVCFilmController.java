@@ -18,8 +18,8 @@ public class MVCFilmController {
     private final FilmsService filmsService;
     @GetMapping("/films")
     public String showFilms(Model model){
-      model.addAttribute("films", filmsService.findAllFilms());
-      return "films";
+        model.addAttribute("films", filmsService.findAllFilms());
+        return "films";
     }
 
     @GetMapping("/films-status")

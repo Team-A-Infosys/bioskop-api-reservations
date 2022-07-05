@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show All Seats Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
           crossorigin="anonymous">
@@ -19,6 +19,8 @@
                         <th>No Kursi</th>
                         <th>Studio</th>
                         <th>Available</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,8 +28,8 @@
                         <td th:text="${seat.seatNumber}"></td>
                         <td th:text="${seat.studioName}"></td>
                         <td th:text="${seat.isAvailable}"></td>
-        <!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
-        <!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                        <td><a th:href="@{/update/seat/{id}(id=${seat.seatId})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${seat.seatId})}">Delete</a></td>
                     </tr>
                     </tbody>
                 </table>

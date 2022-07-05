@@ -10,24 +10,21 @@
 <body>
 <div class="container">
 
-    <form action="#" th:action="@{/tambah-schedule}" th:object="${schedule}" method="post">
-        <label class="form-label" for="filmId">Film Id</label>
-        <input class="form-control" type="text" th:field="*{films.filmId}" id="filmId" placeholder="Place your Id">
-        <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
-        <label class="form-label" for="seatId">Seat Id</label>
-        <input class="form-control" type="text" th:field="*{seats.seatId}" id="seatId" placeholder="Place your Id">
+    <form action="#" th:action="@{/updated-schedule}" th:object="${schedule}" method="post">
+        <label class="form-label" for="scheduleId">Schedule Id</label>
+        <input class="form-control" type="text" th:field="*{schedule.scheduleId}" id="scheduleId" placeholder="Place your Id">
         <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
         <label class="form-label" for="dateShow">Date Show</label>
-        <input class="form-control" type="date" th:field="*{dateShow}" id="dateShow" >
+        <input class="form-control" type="text" th:field="*{schedule.dateShow}" id="dateShow" >
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
         <label class="form-label" for="price">Movie Price</label>
-        <input class="form-control" type="number" th:field="*{price}" id="price" >
+        <input class="form-control" type="text" th:field="*{schedule.price}" id="price" >
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
         <label class="form-label" for="showStart">Show Start</label>
-        <input class="form-control" type="text" th:field="*{showStart}" id="showStart" >
+        <input class="form-control" type="text" th:field="*{schedule.showStart}" id="showStart" >
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
         <label class="form-label" for="showEnd">Show End</label>
-        <input class="form-control" type="text" th:field="*{showEnd}" id="showEnd" >
+        <input class="form-control" type="text" th:field="*{schedule.showEnd}" id="showEnd" >
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
         <button type="submit" class="btn btn-info">Add Schedule</button>
     </form>
