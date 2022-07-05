@@ -22,6 +22,7 @@
                 <th>Movie Start</th>
                 <th>Movie End</th>
                 <th>Movie Price</th>
+                <th>Seat Number</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
                 <td th:text="${schedule.showStart}"></td>
                 <td th:text="${schedule.showEnd}"></td>
                 <td th:text="${schedule.price}"></td>
+                <td th:text="${schedule.seats.seatNumber}"></td>
 
 <!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
 <!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->

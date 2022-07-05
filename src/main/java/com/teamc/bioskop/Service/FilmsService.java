@@ -2,7 +2,6 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;

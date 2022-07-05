@@ -2,7 +2,6 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Films;
-import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Model.StatusFilms;
 import com.teamc.bioskop.Repository.FilmsRepository;
 import lombok.AllArgsConstructor;
@@ -66,12 +65,7 @@ public class FilmsServiceImpl implements FilmsService {
     }
 
     public  List<Films> getByIsPlaying(StatusFilms isPlaying){
-        List<Films> optionalFilms = filmsRepository.getFilmByIsPlaying(isPlaying);
-        if (optionalFilms.isEmpty()){
-            throw new ResourceNotFoundException("Films not exist with status available : " + isPlaying);
-        }
-
-        return this.filmsRepository.getFilmByIsPlaying(isPlaying);
+       return this.filmsRepository.findFilmByIsPlaying(isPlaying);
     }
 
 

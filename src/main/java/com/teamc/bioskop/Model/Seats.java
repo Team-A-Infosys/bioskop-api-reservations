@@ -27,6 +27,7 @@ public class Seats {
 
     private String studioName;
 
+    @Column(name = "is_available")
     @Enumerated(EnumType.STRING)
     private StatusSeats isAvailable;
 
