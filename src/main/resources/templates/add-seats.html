@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Seat - Bioskop Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <form action="#" th:action="@{/added-seats}" th:object="${seats}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Studio</label>
+                <input class="form-control" name="studioName" id="studioName" placeholder="Studio X">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">No Kursi</label>
+                <input class="form-control" name="seatNumber" id="seatNumber" placeholder="Nomor Kursi">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Is Available</label>
+                <select class="form-select" name="isAvailable" aria-label="Default select example">
+                    <option selected>Status Kursi</option>
+                    <option value="AVAILABLE">AVAILABLE</option>
+                    <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

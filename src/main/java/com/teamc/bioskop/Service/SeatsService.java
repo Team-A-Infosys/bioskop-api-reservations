@@ -2,6 +2,7 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Model.StatusSeat;
+import com.teamc.bioskop.Model.StatusFilms;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +15,6 @@ public interface SeatsService {
     Seats updateseat(Seats seat, Long seatId);
     void deleteseat(Long seatId);
     Seats getReferenceById (Long id);
-    List<Seats> getSeatAvailable(StatusSeat isAvailable);
+    List<Seats> getSeatAvailable(StatusSeats isAvailable);
+
 }
