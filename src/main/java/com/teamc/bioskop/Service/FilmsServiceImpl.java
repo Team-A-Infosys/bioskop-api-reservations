@@ -2,7 +2,6 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Films;
-import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Model.StatusFilms;
 import com.teamc.bioskop.Repository.FilmsRepository;
 import lombok.AllArgsConstructor;

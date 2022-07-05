@@ -1,6 +1,5 @@
 package com.teamc.bioskop.Controller.MVC;
 
-import com.teamc.bioskop.Controller.FilmsController;
 import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
 import com.teamc.bioskop.Service.FilmsService;
@@ -8,8 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor

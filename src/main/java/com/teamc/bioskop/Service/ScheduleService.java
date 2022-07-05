@@ -1,7 +1,6 @@
 package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Model.Schedule;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;

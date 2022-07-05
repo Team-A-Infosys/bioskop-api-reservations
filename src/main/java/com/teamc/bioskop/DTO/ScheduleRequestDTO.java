@@ -1,9 +1,10 @@
 package com.teamc.bioskop.DTO;
 
-import com.teamc.bioskop.Model.*;
+import com.teamc.bioskop.Model.Films;
+import com.teamc.bioskop.Model.Schedule;
+import com.teamc.bioskop.Model.Seats;
 import lombok.*;
 
-import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

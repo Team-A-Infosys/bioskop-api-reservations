@@ -1,13 +1,13 @@
 package com.teamc.bioskop.Service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.teamc.bioskop.Exception.ResourceNotFoundException;
+import com.teamc.bioskop.Model.User;
+import com.teamc.bioskop.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.teamc.bioskop.Repository.UserRepository;
-import com.teamc.bioskop.Model.User;
-import com.teamc.bioskop.Exception.ResourceNotFoundException;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
