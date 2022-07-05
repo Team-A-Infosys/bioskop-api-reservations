@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Show All Seats Data</title>
@@ -19,6 +19,8 @@
                         <th>No Kursi</th>
                         <th>Studio</th>
                         <th>Available</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,8 +28,8 @@
                         <td th:text="${seat.seatNumber}"></td>
                         <td th:text="${seat.studioName}"></td>
                         <td th:text="${seat.isAvailable}"></td>
-        <!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
-        <!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                        <td><a th:href="@{/update/seat/{id}(id=${seat.seatId})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${seat.seatId})}">Delete</a></td>
                     </tr>
                     </tbody>
                 </table>
