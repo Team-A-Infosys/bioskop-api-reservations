@@ -2,6 +2,7 @@ package com.teamc.bioskop.DTO;
 
 import com.teamc.bioskop.Model.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
@@ -17,8 +18,13 @@ public class ScheduleRequestDTO {
     private Integer scheduleId;
     private Films films;
     private Seats seats;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateShow;
+
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime showStart;
+
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime showEnd;
     private Integer price;
 

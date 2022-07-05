@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface FilmsRepository extends JpaRepository<Films, Long> {
 
-    @Query(value = "select * from films f where is_playing =?1", nativeQuery = true)
-    public List<Films> getFilmByIsPlaying(StatusFilms isPlaying);
+    List<Films> findFilmByIsPlaying(StatusFilms isPlaying);
   }
