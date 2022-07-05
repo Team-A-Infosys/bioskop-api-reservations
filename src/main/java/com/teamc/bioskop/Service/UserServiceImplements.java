@@ -3,6 +3,7 @@ package com.teamc.bioskop.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.teamc.bioskop.Model.Seats;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.teamc.bioskop.Repository.UserRepository;
@@ -70,8 +71,8 @@ public class UserServiceImplements implements UserService{
      * @return
      * @throws Exception
      */
-    public User updateUser(User user) throws Exception{
-        Optional<User> optionalUser = userRepository.findById(user.getUserId());
+    public User updateUser(User user, Long userId){
+        Optional<User> optionalUser = userRepository.findById(userId);
         if(optionalUser == null){
             throw new ResourceNotFoundException("User not exist with id :" + user.getUserId());
         }
@@ -83,4 +84,13 @@ public class UserServiceImplements implements UserService{
         return this.userRepository.getReferenceById(Id);
     }
 
+    @Override
+    public Optional<User> findbyid(Long id){
+
+        Optional<User> optionalUsers = userRepository.findById(id);
+        if (optionalUsers == null){
+            throw new ResourceNotFoundException(" Seats not Exist with id :" + id);
+        }
+        return userRepository.findById(id);
+    }
 }

@@ -49,19 +49,6 @@ public class MVCSeatsController {
         return "update-seat";
     }
 
-    /*
-    @PostMapping("/update/{id}")
-    public String updateSeat(@PathVariable("id") long id, @Valid Seats seats, BindingResult result, Model model){
-        if(result.hasErrors()){
-            seats.setSeatId(id);
-            return "update-seat";
-        }
-
-        seatService.createseat(seats);
-        return "redirect:/index";
-    }
-     */
-
     @PostMapping("/update/seat/{id}")
     public String updateById(@PathVariable("id") Long id,
                              @ModelAttribute("seats") Seats seats){
@@ -70,10 +57,10 @@ public class MVCSeatsController {
         return "success-updated-seats";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model){
+    @GetMapping("/delete/seat/{id}")
+    public String deleteSeat(@PathVariable("id") long id, Model model){
         Seats seats = seatService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         seatService.deleteseat(id);
-        return "redirect:/index";
+        return "redirect:/getseats";
     }
 }
