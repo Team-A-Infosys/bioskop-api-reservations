@@ -24,15 +24,14 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <form action="#" th:action="@{/tambah-bookings}" th:object="${bookings}" method="post">
+    <form action="#" th:action="@{/updated/bookings/{id}(id=${bookings.bookingId})}" th:object="${bookings}" method="post">
         <label class="form-label" for="userId">user</label>
         <input class="form-control" type="number" th:field="*{user.userId}" id="userId" placeholder="Please input with userId">
         <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
         <label class="form-label" for="scheduleId">Schedule</label>
         <input class="form-control" type="number" th:field="*{schedule.scheduleId}" id="scheduleId" placeholder="Please input with scheduleId">
         <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
-        <label class="form-label" for="scheduleId">Schedule</label>
-        <button type="submit" class="btn btn-info">Add new Booking</button>
+        <button type="submit" class="btn btn-info">Update Booking</button>
     </form>
 
 </div>
