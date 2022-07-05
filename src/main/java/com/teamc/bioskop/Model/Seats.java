@@ -2,7 +2,7 @@ package com.teamc.bioskop.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.teamc.bioskop.Response.SeatsResponseDTO;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,7 +10,11 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "seats")
 public class Seats {
@@ -19,14 +23,12 @@ public class Seats {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatId;
 
-    @Column(name = "seat_number")
     private long seatNumber;
 
-    @Column(name = "studio_name")
     private String studioName;
 
-    @Column(name = "is_available")
-    private String isAvailable;
+    @Enumerated(EnumType.STRING)
+    private StatusSeats isAvailable;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -42,46 +44,6 @@ public class Seats {
                 .studio(this.studioName)
                 .build();
     }
-
-    public Long getSeatId() {
-
-        return seatId;
-    }
-
-    public void setSeatId(Long seatId) {
-
-        this.seatId = seatId;
-    }
-
-    public Long getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(Long seatNumber) {
-
-        this.seatNumber = seatNumber;
-    }
-
-    public String getStudioName() {
-
-        return studioName;
-    }
-
-    public void setStudioName(String studioName) {
-
-        this.studioName = studioName;
-    }
-
-    public String getIsAvailable() {
-
-        return isAvailable;
-    }
-
-    public void setIsAvailable(String isAvailable) {
-
-        this.isAvailable = isAvailable;
-    }
-
     @Override
     public String toString() {
         return "Seats{" +

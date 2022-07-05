@@ -1,6 +1,8 @@
 package com.teamc.bioskop.Response;
 
 
+import com.teamc.bioskop.Model.StatusFilms;
+import com.teamc.bioskop.Model.StatusSeats;
 import lombok.*;
 
 @Getter
@@ -10,7 +12,7 @@ import lombok.*;
 @Builder
 public class SeatsResponseDTO {
     private Long code;
-    private String status;
+    private StatusSeats status;
     private String studio;
     private Long seat;
 
