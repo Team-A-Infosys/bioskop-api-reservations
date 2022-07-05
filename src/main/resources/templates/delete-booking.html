@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioskop REservation App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body style="background-color: rgb(12, 12, 12);">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navbar -->
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+            <img src="https://ist.id/image/Logo-09.png" alt="" width="30"  class="d-inline-block align-text-top">
+            Bioskop Reservation Project
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form action="#" th:action="@{/deleted/bookings/{id}(id=${bookings.bookingId})}" th:object="${bookings}" method="get">
+            <label class="form-label" for="userId">user</label>
+            <input class="form-control" type="number" th:field="*{user.userId}" id="userId" placeholder="Please input with userId">
+            <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+            <label class="form-label" for="scheduleId">Schedule</label>
+            <input class="form-control" type="number" th:field="*{schedule.scheduleId}" id="scheduleId" placeholder="Please input with scheduleId">
+            <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+            <button type="submit" class="btn btn-info">Booking's Deleted!</button>
+        </form>
+
+    </div>
+</nav>
+</body>
+</html>

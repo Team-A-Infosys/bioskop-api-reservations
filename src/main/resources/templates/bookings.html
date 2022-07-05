@@ -26,8 +26,8 @@
                             <th>seats</th>
                             <th>studioname</th>
                             <th>tanggaltayang</th>
-                                            <th>Edit</th>
-<!--                                            <th>Delete</th>-->
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,8 +37,12 @@
                             <td th:text="${booking.schedule.seats.seatNumber}"></td>
                             <td th:text="${booking.schedule.seats.studioName}"></td>
                             <td th:text="${booking.schedule.dateShow}"></td>
-                                            <td><a th:href="@{/update/bookings/{id}(id=${booking.bookingId})}">Edit</a></td>
-<!--                                            <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                            <td><a th:href="@{/update-bookings/{id}(id=${booking.bookingId})}">Edit</a></td>
+                            <td>
+                                <form th:method="delete" th:action="@{/deleted/bookings{id}(id=${booking.bookingId})}">
+                                    <button type="submit">delete</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
