@@ -26,6 +26,7 @@ public class Seats {
     private long seatNumber;
 
     private String studioName;
+
     @Enumerated(EnumType.STRING)
     private StatusSeats isAvailable;
 
@@ -43,7 +44,6 @@ public class Seats {
                 .studio(this.studioName)
                 .build();
     }
-
     @Override
     public String toString() {
         return "Seats{" +

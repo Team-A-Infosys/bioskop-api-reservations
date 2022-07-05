@@ -72,7 +72,7 @@ public class SeatsServiceImpl implements SeatsService {
         return this.seatRepository.getReferenceById(id);
     }
 
-
+    @Override
     public List<Seats> getSeatAvailable(StatusSeats isAvailable) {
         List<Seats> optionalSeats = seatRepository.getSeatAvailable(isAvailable);
         if (optionalSeats == null){

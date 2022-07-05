@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Service.SeatsService;
