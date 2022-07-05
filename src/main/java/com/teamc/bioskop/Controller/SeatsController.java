@@ -1,7 +1,7 @@
 package com.teamc.bioskop.Controller;
 
-import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
+import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Response.ResponseHandler;
 import com.teamc.bioskop.Service.SeatsService;
 import org.apache.log4j.LogManager;

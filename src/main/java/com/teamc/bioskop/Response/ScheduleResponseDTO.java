@@ -6,7 +6,6 @@ import com.teamc.bioskop.Model.Seats;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Getter

@@ -2,10 +2,9 @@ package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Seats;
-import com.teamc.bioskop.Model.StatusSeat;
+import com.teamc.bioskop.Model.StatusSeats;
 import com.teamc.bioskop.Repository.SeatsRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.mvc;
+package com.teamc.bioskop.Controller.MVC;
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Service.ScheduleService;
 import lombok.AllArgsConstructor;
@@ -51,7 +51,6 @@ private ScheduleService scheduleService;
             scheduleService.createSchedule(schedules);
             return "redirect:/schedule/AllSchedule";
     }
-
     @GetMapping("/delete/schedule/{id}")
     public String deleteSchedule(@PathVariable("id") Integer id) {
         this.scheduleService.deleteScheduleById(id);

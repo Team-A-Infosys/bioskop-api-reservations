@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update User - Bioskop Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h2>Update User</h2>
+        <form action="#" th:action="@{/update/user/{id}(id=${user.userId})}" th:object="${user}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" th:field="*{username}" id="username" placeholder="Masukkan username">
+                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" th:field="*{emailId}" id="emailId" placeholder="Masukkan Email">
+                <span th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" th:field="*{password}" id="password" placeholder="Masukkan Password">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Update User</button>
+        </form>
+    </div>
+</body>
+</html>

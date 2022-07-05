@@ -1,12 +1,13 @@
 package com.teamc.bioskop.Controller;
 
-import com.teamc.bioskop.DTO.*;
+import com.teamc.bioskop.DTO.ScheduleRequestDTO;
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
-import com.teamc.bioskop.Model.*;
+import com.teamc.bioskop.Model.Films;
+import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Response.ResponseHandler;
 import com.teamc.bioskop.Response.ScheduleResponseFilmSeatDTO;
 import com.teamc.bioskop.Response.ScheduleResponseNameLikeDTO;
-import com.teamc.bioskop.Service.*;
+import com.teamc.bioskop.Service.ScheduleService;
 import lombok.AllArgsConstructor;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

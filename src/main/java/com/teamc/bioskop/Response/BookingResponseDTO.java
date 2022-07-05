@@ -1,9 +1,7 @@
 package com.teamc.bioskop.Response;
 
-import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Model.StatusFilms;
-import com.teamc.bioskop.Model.StatusSeat;
-import com.teamc.bioskop.Model.User;
+import com.teamc.bioskop.Model.StatusSeats;
 import lombok.*;
 
 import java.time.LocalDate;

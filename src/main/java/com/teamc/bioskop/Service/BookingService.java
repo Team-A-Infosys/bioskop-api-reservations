@@ -1,9 +1,6 @@
 package com.teamc.bioskop.Service;
 
 import com.teamc.bioskop.Model.Booking;
-import com.teamc.bioskop.Model.Films;
-import com.teamc.bioskop.Model.Schedule;
-import com.teamc.bioskop.Model.Seats;
 
 import java.util.List;
 import java.util.Optional;
