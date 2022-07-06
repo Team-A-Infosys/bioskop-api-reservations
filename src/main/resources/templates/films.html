@@ -59,7 +59,7 @@
                             </div>
                         </form>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <thead>
                 <tr>
@@ -125,26 +125,6 @@
             <div th:if="${totalPages > 10}"></div>
         </div>
     </div>
-<!--    <div class="container">-->
-<!--        <div class="row justify-content-center">-->
-<!--            <div class="col-lg-3 col-sm-12 mx-2 my-2 text-center" th:each="film : ${films}">-->
-<!--                <span>-->
-
-<!--                    <div class="card" style="width: 18rem;">-->
-<!--                      <img src="/" class="card-img-top" alt="...">-->
-<!--                      <div class="card-body">-->
-<!--                          <h5 class="card-title"><span th:text="${film.name}"></span></h5>-->
-<!--                            <p class="card-text"><span th:text="${film.isPlaying}"></span></p>-->
-<!--                          <a th:href="@{/edit-film/{id}(id=${film.filmId})}" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>-->
-<!--                          <a th:href="@{/delete-film/{id}(id=${film.filmId})}" class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')"><i class="bi bi-x-circle"></i></a>-->
-<!--                      </div>-->
-<!--                    </div>-->
-
-<!--                 </span>-->
-<!--             </div>-->
-<!--        </div>-->
-<!--    </div>-->
-</div>
 </main>
 </body>
 </html>
