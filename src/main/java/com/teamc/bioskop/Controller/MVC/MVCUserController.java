@@ -19,8 +19,8 @@ public class MVCUserController {
      * Get All Users
      */
     @GetMapping("/getusers")
-    public String showUserList(Model model){
-        model.addAttribute("users",userService.getAll());
+    public String showUserList(Model model) {
+        model.addAttribute("users", userService.getAll());
         return "users";
     }
 
@@ -28,7 +28,7 @@ public class MVCUserController {
      * Create New Users
      */
     @GetMapping("/add-user")
-    public String formUser(Model model){
+    public String formUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
 
@@ -36,7 +36,7 @@ public class MVCUserController {
     }
 
     @PostMapping("/added-user")
-    public String newUser(@ModelAttribute("user") User user){
+    public String newUser(@ModelAttribute("user") User user) {
         this.userService.createUser(user);
         return "success-added-user";
     }
@@ -45,7 +45,7 @@ public class MVCUserController {
      * Update USer
      */
     @GetMapping("/update/user/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model){
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
         User user = this.userService.getReferenceById(id);
         model.addAttribute("user", user);
         return "update-user";
@@ -53,9 +53,9 @@ public class MVCUserController {
 
     @PostMapping("/update/user/{id}")
     public String updateUserById(@PathVariable("id") Long id,
-                                 @ModelAttribute("user") User user){
+                                 @ModelAttribute("user") User user) {
         user.setUserId(id);
-        this.userService.updateUser(user,id);
+        this.userService.updateUser(user, id);
         return "success-updated-user";
     }
 
@@ -63,7 +63,7 @@ public class MVCUserController {
      * Delete User
      */
     @GetMapping("/delete/user/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model){
+    public String deleteUser(@PathVariable("id") long id, Model model) {
         User user = userService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         userService.deleteUserById(id);
         return "redirect:/getusers";

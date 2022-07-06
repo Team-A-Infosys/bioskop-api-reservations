@@ -35,7 +35,7 @@ public class Booking {
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
 
-    public BookingResponseDTO convertToResponse(){
+    public BookingResponseDTO convertToResponse() {
         return BookingResponseDTO.builder()
                 .book_id(this.bookingId)
                 .usr_id(this.getUser().getUserId())
@@ -53,7 +53,7 @@ public class Booking {
                 .build();
     }
 
-    public BookingResponsePost convertToResponsePost(){
+    public BookingResponsePost convertToResponsePost() {
         return BookingResponsePost.builder()
                 .book_id(this.bookingId)
                 .usr_id(this.getUser().getUserId())

@@ -53,13 +53,13 @@ public class Schedule {
     private Integer price;
 
     @CreationTimestamp
-    @Column(nullable = false,updatable = false)
+    @Column(nullable = false, updatable = false)
     private ZonedDateTime createdAt;
 
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
 
-    public ScheduleResponseDTO convertToResponse(){
+    public ScheduleResponseDTO convertToResponse() {
         return ScheduleResponseDTO.builder()
                 .scheduleId(this.scheduleId).films(this.films)
                 .seats(this.seats).dateShow(this.dateShow)
@@ -67,7 +67,7 @@ public class Schedule {
 //                .createdAt(this.createdAt).updatedAt(this.updatedAt).build();
     }
 
-    public ScheduleResponseFilmSeatDTO convertToResponseFilmsSeat(){
+    public ScheduleResponseFilmSeatDTO convertToResponseFilmsSeat() {
         return ScheduleResponseFilmSeatDTO.builder()
                 .scheduleId(this.scheduleId)
                 .filmId(this.films.getFilmId())
@@ -80,7 +80,8 @@ public class Schedule {
 //                .createdAt(this.createdAt)
 
     }
-    public ScheduleResponseNameLikeDTO convertToResponseNameLike(){
+
+    public ScheduleResponseNameLikeDTO convertToResponseNameLike() {
         return ScheduleResponseNameLikeDTO.builder()
                 .filmName(this.getFilms().getName())
                 .studioName(this.getSeats().getStudioName())

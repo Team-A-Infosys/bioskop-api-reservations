@@ -34,7 +34,7 @@ public class Films {
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
 
-        public FilmsResponseDTO convertToResponse() {
+    public FilmsResponseDTO convertToResponse() {
         return FilmsResponseDTO.builder().code(this.filmId)
                 .title(this.name)
                 .status(this.isPlaying)

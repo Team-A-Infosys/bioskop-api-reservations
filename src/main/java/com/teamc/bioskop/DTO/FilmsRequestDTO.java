@@ -13,7 +13,7 @@ public class FilmsRequestDTO {
     private String title;
     private StatusFilms status;
 
-    public Films convertToEntity(){
+    public Films convertToEntity() {
         return Films.builder()
                 .name(this.title)
                 .isPlaying(this.status)
