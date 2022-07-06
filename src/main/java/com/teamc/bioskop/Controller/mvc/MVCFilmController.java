@@ -4,9 +4,16 @@ import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
 import com.teamc.bioskop.Service.FilmsService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @AllArgsConstructor
@@ -15,13 +22,40 @@ public class MVCFilmController {
     private final FilmsService filmsService;
     @GetMapping("/films")
     public String showFilms(Model model){
-        model.addAttribute("films", filmsService.findAllFilms());
-        return "films";
+        return paginatedFilm(1, model);
     }
 
     @GetMapping("/films-status")
-    public String showFilmByStatus(Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms ){
-        model.addAttribute("films", filmsService.getByIsPlaying(statusFilms));
+    public String showFilmsByStatus(@RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms, Model model){
+        return paginatedFilmByStatus(1, model, statusFilms);
+    }
+
+    @GetMapping("/films/{page}")
+    public String paginatedFilm(@PathVariable(value = "page") int pageNo, Model model){
+        int pageSize = 5;
+
+        Page<Films> filmsPage = this.filmsService.findPaginated(pageNo, pageSize);
+        List<Films> filmsList = filmsPage.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", filmsPage.getTotalPages());
+        model.addAttribute("totalItems", filmsPage.getTotalElements());
+        model.addAttribute("listFilms", filmsList);
+
+
+        return "films";
+    }
+    @GetMapping("/films-status/{pageStatus}")
+    public String paginatedFilmByStatus(@PathVariable(value = "pageStatus") int pageNo, Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms){
+        int pageSize = 5;
+
+        Page<Films> filmsPage = this.filmsService.findPaginatedByStatus(statusFilms, pageNo, pageSize);
+        List<Films> filmsList = filmsPage.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", filmsPage.getTotalPages());
+        model.addAttribute("totalItems", filmsPage.getTotalElements());
+        model.addAttribute("listFilms", filmsList);
 
         return "films";
     }
@@ -55,8 +89,5 @@ public class MVCFilmController {
 
         return "redirect:/films";
     }
-
-
-
 
 }
