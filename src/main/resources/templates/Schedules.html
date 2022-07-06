@@ -34,8 +34,8 @@
                 <td th:text="${schedule.price}"></td>
                 <td th:text="${schedule.seats.seatNumber}"></td>
 
-<!--                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>-->
-<!--                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>-->
+                <td><a th:href="@{/update/schedule/{id}(id=${schedule.scheduleId})}">Edit</a></td>
+                <td><a th:href="@{/delete/schedule/{id}(id=${schedule.scheduleId})}">Delete</a></td>
             </tr>
             </tbody>
     </table>

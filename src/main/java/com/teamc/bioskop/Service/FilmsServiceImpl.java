@@ -5,6 +5,10 @@ import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
 import com.teamc.bioskop.Repository.FilmsRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -43,6 +47,18 @@ public class FilmsServiceImpl implements FilmsService {
 
     public Films getReferenceById (Long id) {
         return this.filmsRepository.getReferenceById(id);
+    }
+
+    @Override
+    public Page<Films> findPaginatedByStatus(StatusFilms isPlaying, int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.filmsRepository.findFilmByIsPlaying(isPlaying, pageable);
+    }
+
+    @Override
+    public Page<Films> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.filmsRepository.findAll(pageable);
     }
 
 

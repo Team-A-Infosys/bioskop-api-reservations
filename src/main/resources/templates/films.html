@@ -35,41 +35,94 @@
 </nav>
 <main class="mt-3">
 
-    <div class="container">
-        <h2>Films</h2>
-            <div class="row justify-content-between mt-4">
-                <div class="col-sm-4">
-                    <a th:href="@{/add-film}" class="btn btn-primary btn-sm">Add Film</a>
-                </div>
-                <div class="col-sm-4">
-                    <form action="#" th:action="@{/films-status}" method="get">
-                        <div class="input-group mb-3">
-                            <select class="form-select" id="inputGroupSelect04" name="isPlaying">
-                                <option value="">Choose</option>
-                                <option value="PLAYING">Playing</option>
-                                <option value="NOT_PLAYING">Not Playing</option>
-                            </select>
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+<div class="container">
+    <div th:switch="${listFilms}">
+        <h2 th:case="null">No films yet!</h2>
+        <div th:case="*">
+            <h2>Films</h2>
+            <table class="table">
+                <div class="container mt-4 ">
+                    <div class="row justify-content-between">
+                        <div class="col-sm-4">
+                            <a th:href="@{/add-film}" class="btn btn-primary btn-sm">Add Film</a>
+                        </div>
+                    <div class="col-sm-4">
+
+                        <form action="#" th:action="@{/films-status}" method="get">
+                            <div class="input-group mb-3">
+                                <select class="form-select" id="inputGroupSelect04" name="isPlaying">
+                                    <option value="">Choose</option>
+                                    <option value="PLAYING">Playing</option>
+                                    <option value="NOT_PLAYING">Not Playing</option>
+                                </select>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                         </div>
                     </form>
                 </div>
-            </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-12 mx-2 my-2 text-center" th:each="film : ${films}">
-                <span>
-
-                    <div class="card" style="width: 18rem;">
-                      <img th:src="@{/img/cat-work.jpg}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title"><span th:text="${film.name}"></span></h5>
-                            <p class="card-text"><span th:text="${film.isPlaying}"></span></p>
-                          <a th:href="@{/edit-film/{id}(id=${film.filmId})}" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-                          <a th:href="@{/delete-film/{id}(id=${film.filmId})}" class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')"><i class="bi bi-x-circle"></i></a>
-                      </div>
+                <thead>
+                <tr>
+                    <th scope="col">Film Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="film : ${listFilms}">
+                    <td th:text="${film.name}"></td>
+                    <td th:text="${film.isPlaying}"></td>
+                    <td><a th:href="@{/edit-film/{id}(id=${film.filmId})}" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a></td>
+                    <td><a th:href="@{/delete-film/{id}(id=${film.filmId})}" class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')"><i class="bi bi-x-circle"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${totalPages <= 10}">
+                <div class="row col-sm-10">
+                    <div class="col-sm-2">
+                        Total Rows: [[${totalItems}]]
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <div th:if="${page!=null or #httpServletRequest.requestURI == '/films'}">
+                                    <li class="page-item"> <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/films/' + ${currentPage + 1}}">Next</a></li>
+                                    <li class="page-item"><a class="page-link" th:if="${currentPage != i}" th:href="@{'/films/' + ${i}}">[[${i}]]</a></li>
+                                    <li class="page-item active"><span class="page-link" th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                </div>
+                             </span>
+                        </ul>
+                    </nav>
 
-                 </span>
-             </div>
+                    <div class="col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <div th:if="${page!=null or #httpServletRequest.requestURI == '/films'}">
+                          <a th:if="${currentPage != i}" th:href="@{'/films/' + ${i}}">[[${i}]]</a>
+                          <span th:unless="${currentPage != i}">[[${i}]]</span>
+                        </div>
+
+
+                        <div th:if="${#request.getParameter('isPlaying') != null}">
+                          <a th:if="${currentPage != i}" th:href="@{'/films-status/' + ${i}(isPlaying=${param.isPlaying})}">[[${i}]]</a>
+                          <span th:unless="${currentPage != i}">[[${i}]]</span>
+                        </div>
+
+                    </span>
+                    </div>
+<!--                    <-- Next Page Indicator-->
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/films/' + ${currentPage + 1}}">Next</a>
+                        <span th:unless="${currentPage < totalPages}">Next</span>
+                    </div>
+<!--                   <-- Last Page Indicator-->
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/films/' + ${totalPages}}">Last</a>
+                        <span th:unless="${currentPage < totalPages}">Last</span>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${totalPages > 10}"></div>
         </div>
     </div>
 </main>
