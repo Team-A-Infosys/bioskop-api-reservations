@@ -52,7 +52,7 @@ public class MVCFilmController {
         model.addAttribute("bookings", bookings);
 
 
-        return "landing";
+        return "index";
     }
 
     @GetMapping("/films-status/{pageStatus}")
