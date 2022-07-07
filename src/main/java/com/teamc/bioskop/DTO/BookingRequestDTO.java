@@ -15,7 +15,7 @@ public class BookingRequestDTO {
     private User usr;
     private Schedule sch;
 
-    public Booking covertToEntitiy(){
+    public Booking covertToEntitiy() {
         return Booking.builder()
                 .bookingId(this.id)
                 .user(this.usr)
@@ -23,4 +23,3 @@ public class BookingRequestDTO {
                 .build();
     }
 }
-

@@ -10,15 +10,13 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="">table</h1>
     <div class="row">
         <div class="col-8 mx-auto">
             <div th:switch="${bookings}">
-                <h2 th:case="null">No bookings yet!</h2>
+<!--                <h2 th:case="null">No bookings yet!</h2>-->
                 <div th:case="*">
                     <h2 class="text-center">Booking</h2>
-                    <h3 th:case="null">No bookings yet!</h3>
-                    <table class="table table-danger table-striped">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>User</th>
@@ -37,10 +35,10 @@
                             <td th:text="${booking.schedule.seats.seatNumber}"></td>
                             <td th:text="${booking.schedule.seats.studioName}"></td>
                             <td th:text="${booking.schedule.dateShow}"></td>
-                            <td><a th:href="@{/update-bookings/{id}(id=${booking.bookingId})}">Edit</a></td>
+                            <td><a th:href="@{/update-bookings/{id}(id=${booking.bookingId})}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                             <td>
                                 <form th:method="delete" th:action="@{/deleted/bookings{id}(id=${booking.bookingId})}">
-                                    <button type="submit">delete</button>
+                                    <button type="submit" class="btn btn-danger">delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -53,6 +51,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

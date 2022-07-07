@@ -8,13 +8,17 @@
 </head>
 <body>
 <form th:action="@{/updated-bookings/{id}(id=${bookings.bookingId})}" th:object="${editBookings}" th:method="put">
-    <select th:field="*{user}">
-        <option th:each="user : ${users}" th:text="${user.username}" th:value="${user.userId}"></option>
-    </select>
+    <div class="mb-3 mt-3">
+        <label class="form-label">User:</label>
+        <select th:field="*{user}">
+            <option th:each="user : ${users}" th:text="${user.username}" th:value="${user.userId}"></option>
+        </select>
+        </div>
     <select th:field="*{schedule}">
         <option th:each="schedule :${schedules}" th:text="${schedule.scheduleId}" th:value="${schedule.scheduleId}"></option>
     </select>
     <button type="submit" class="btn btn-info">Update Booking</button>
+    <a th:href="@{/bookings}">back</a>
 </form>
 </body>
 </html>

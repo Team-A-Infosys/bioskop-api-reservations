@@ -33,23 +33,23 @@ public class FilmsController {
     public ResponseEntity<Object> getAllFilm() {
         try {
             List<Films> result = filmsService.findAllFilms();
-            List<Map<String,Object>> maps = new ArrayList<>();
-            logger.info(Line+" Logger Start Get All Films "+Line);
-            for (Films filmsResult:result ){
-                Map<String,Object> film = new HashMap<>();
+            List<Map<String, Object>> maps = new ArrayList<>();
+            logger.info(Line + " Logger Start Get All Films " + Line);
+            for (Films filmsResult : result) {
+                Map<String, Object> film = new HashMap<>();
                 logger.info(Line);
-                film.put("Judul",filmsResult.getName());
+                film.put("Judul", filmsResult.getName());
                 logger.info("Judul: " + filmsResult.getName());
-                film.put("Status Film",filmsResult.getIsPlaying());
+                film.put("Status Film", filmsResult.getIsPlaying());
                 logger.info("Status Film: " + filmsResult.getIsPlaying());
                 logger.info(Line);
                 maps.add(film);
             }
-            logger.info(Line+" Logger End Get All Films "+Line);
+            logger.info(Line + " Logger End Get All Films " + Line);
             return ResponseHandler.generateResponse("Sukses Get All Films", HttpStatus.OK, result);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Table Has No Value!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Table Has No Value!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Table Has No Value!");
         }
@@ -66,9 +66,9 @@ public class FilmsController {
             logger.info(result);
             logger.info(Line + " Logger End SearchById " + Line);
             return ResponseHandler.generateResponse("Sukses GetSearchById", HttpStatus.OK, result);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
@@ -85,9 +85,9 @@ public class FilmsController {
             logger.info(result);
             logger.info(Line + " Logger End Create " + Line);
             return ResponseHandler.generateResponse("Sukses Create", HttpStatus.CREATED, result);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"Film Already Exist!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Film Already Exist!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Film Already Exist!");
         }
@@ -97,18 +97,18 @@ public class FilmsController {
      * UPDATE FILM by ID
      */
     @PutMapping("/film/{filmId}")
-    public ResponseEntity<Object> updateFilms(@PathVariable(value = "filmId") Long filmId,@RequestBody Films filmsdetails) {
+    public ResponseEntity<Object> updateFilms(@PathVariable(value = "filmId") Long filmId, @RequestBody Films filmsdetails) {
         try {
             Films films = filmsdetails;
             films.setFilmId(filmId);
-            Films filmsUpdate = filmsService.updateFilm(films,filmId);
+            Films filmsUpdate = filmsService.updateFilm(films, filmId);
             logger.info(Line + " Logger Start Update " + Line);
             logger.info(filmsUpdate);
             logger.info(Line + " Logger End Update " + Line);
             return ResponseHandler.generateResponse("Sukses Update", HttpStatus.CREATED, filmsUpdate);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
@@ -128,9 +128,9 @@ public class FilmsController {
             logger.info(delete);
             logger.info(Line + " Logger Delete " + Line);
             return ResponseHandler.generateResponse("Sukses Delete", HttpStatus.OK, delete);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
@@ -141,12 +141,12 @@ public class FilmsController {
      * custom Challange 4 slide 8 nomor 1
      */
     @PostMapping("/film/ShowMovie")
-    public ResponseEntity<Object> ShowMovie(@RequestBody Films films){
+    public ResponseEntity<Object> ShowMovie(@RequestBody Films films) {
         try {
             List<Films> result = filmsService.getByIsPlaying(films.getIsPlaying());
-            List<Map<String,Object>> maps = new ArrayList<>();
+            List<Map<String, Object>> maps = new ArrayList<>();
             logger.info(Line + " Logger Start Get All Films " + Line);
-            for (Films filmsResult:result ) {
+            for (Films filmsResult : result) {
                 Map<String, Object> film = new HashMap<>();
                 logger.info(Line);
                 film.put("Judul", filmsResult.getName());
@@ -160,7 +160,7 @@ public class FilmsController {
             return ResponseHandler.generateResponse("Sukses Search Show Movie", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Get All Users     ====================");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }

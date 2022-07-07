@@ -9,11 +9,16 @@ import java.util.Optional;
 public interface UserService {
 
     List<User> getAll();
+
     User createUser(User user);
+
     Optional<User> getUserById(Long users_Id);
+
     void deleteUserById(Long users_Id);
+
     User updateUser(User user, Long userId);
+
     User getReferenceById(Long Id);
+
     Optional<User> findbyid(Long id);
 }
-

@@ -38,13 +38,14 @@ public class Seats {
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
 
-    public SeatsResponseDTO convertToResponse(){
+    public SeatsResponseDTO convertToResponse() {
         return SeatsResponseDTO.builder().code(this.seatId)
                 .status(this.isAvailable)
                 .seat(this.seatNumber)
                 .studio(this.studioName)
                 .build();
     }
+
     @Override
     public String toString() {
         return "Seats{" +

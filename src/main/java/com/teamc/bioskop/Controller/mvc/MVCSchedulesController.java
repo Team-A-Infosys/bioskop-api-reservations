@@ -1,4 +1,5 @@
-package com.teamc.bioskop.Controller.mvc;
+package com.teamc.bioskop.Controller.MVC;
+
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Service.ScheduleService;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 @Controller
 public class MVCSchedulesController {
-private ScheduleService scheduleService;
+    private ScheduleService scheduleService;
 
     @GetMapping("/schedule/AllSchedule")
     public String showSchedulesList(Model model) {
@@ -34,23 +35,26 @@ private ScheduleService scheduleService;
     }
 
     @PostMapping("/tambah-schedule")
-    public String submitSchedule(@ModelAttribute("schedule")Schedule schedules) {
+    public String submitSchedule(@ModelAttribute("schedule") Schedule schedules) {
         this.scheduleService.createSchedule(schedules);
         return "redirect:/schedule/AllSchedule";
     }
+
     @GetMapping("/update/schedule/{id}")
-    public String showEditSchedule(Model model, @PathVariable ("id")Integer id) {
+    public String showEditSchedule(Model model, @PathVariable("id") Integer id) {
         Schedule schedules = this.scheduleService.getReferenceById(id);
         model.addAttribute("schedule", schedules);
         return "update-schedule";
     }
-        @PostMapping("/updated/schedule/{id}")
-        public String updateById(@PathVariable("id") Integer id,
-                                 @ModelAttribute("schedule")Schedule schedules) {
+
+    @PostMapping("/updated/schedule/{id}")
+    public String updateById(@PathVariable("id") Integer id,
+                             @ModelAttribute("schedule") Schedule schedules) {
         schedules.setScheduleId(id);
-            scheduleService.createSchedule(schedules);
-            return "redirect:/schedule/AllSchedule";
+        scheduleService.createSchedule(schedules);
+        return "redirect:/schedule/AllSchedule";
     }
+
     @GetMapping("/delete/schedule/{id}")
     public String deleteSchedule(@PathVariable("id") Integer id) {
         this.scheduleService.deleteScheduleById(id);

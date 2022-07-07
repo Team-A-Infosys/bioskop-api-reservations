@@ -28,40 +28,39 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     /**
-     *Get all of data from schedules table
+     * Get all of data from schedules table
      */
     @GetMapping("/schedule")
-    public ResponseEntity<Object> ScheduleList(){
+    public ResponseEntity<Object> ScheduleList() {
         try {
             List<Schedule> result = scheduleService.getAll();
             List<ScheduleResponseFilmSeatDTO> scheduleMaps = new ArrayList<>();
             logger.info(Line + "Logger Start Find All Schedule" + Line);
-            for (Schedule dataResult:result){
-                Map<String,Object> schedule = new HashMap<>();
+            for (Schedule dataResult : result) {
+                Map<String, Object> schedule = new HashMap<>();
                 logger.info("================================");
                 schedule.put("Schedule id : ", dataResult.getScheduleId());
                 schedule.put("Film : ", dataResult.getFilms());
                 schedule.put("Seat : ", dataResult.getSeats());
-                logger.info("Schedule id :"+dataResult.getScheduleId());
-                logger.info("Film :"+dataResult.getFilms());
-                logger.info("Seats :"+dataResult.getSeats());
+                logger.info("Schedule id :" + dataResult.getScheduleId());
+                logger.info("Film :" + dataResult.getFilms());
+                logger.info("Seats :" + dataResult.getSeats());
                 logger.info("================================");
                 ScheduleResponseFilmSeatDTO scheduleDTO = dataResult.convertToResponseFilmsSeat();
                 scheduleMaps.add(scheduleDTO);
             }
             logger.info(Line + "Logger End Find All Schedule" + Line);
             return ResponseHandler.generateResponse("Successfully  getAll data!", HttpStatus.OK, scheduleMaps);
-        }
-        catch (ResourceNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             logger.error("------------------------------------");
             logger.error(e.getMessage());
             logger.error("------------------------------------");
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND, "Tabel has no Value");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Tabel has no Value");
         }
     }
 
     /**
-     *create new schedule into schedules table
+     * create new schedule into schedules table
      * throws ResourceNotFoundException if bad request happened
      */
     @PostMapping("/schedule")
@@ -101,6 +100,7 @@ public class ScheduleController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Bad Request");
         }
     }
+
     /**
      * delete schedule by id
      * throws ResourceNotFoundException if data is not found
@@ -121,8 +121,9 @@ public class ScheduleController {
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
     }
+
     /**
-     *Get Schedule by Schedule id
+     * Get Schedule by Schedule id
      * throws ResourceNotFoundException if data is not found
      */
     @GetMapping("/schedule/{id}")
@@ -140,13 +141,14 @@ public class ScheduleController {
             logger.error("------------------------------------");
             logger.error(e.getMessage());
             logger.error("------------------------------------");
-          return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"); }
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
+        }
     }
 
     /**
      * custom Challange 4 slide 8 nomor 2.2
      * Query Find colum Film,Studio Name, Price
-     *throws ResourceNotFoundException if film name is not found
+     * throws ResourceNotFoundException if film name is not found
      */
     @PostMapping("/schedule/byfilmnameLike")
     public ResponseEntity<Object> findScheduleByFilmName(@RequestBody Films film) {
@@ -158,12 +160,12 @@ public class ScheduleController {
             logger.info(Line + "Logger Start Create New Schedule" + Line);
             logger.info("Get Response :" + results);
             logger.info(Line + "Logger Finish Create New Schedule" + Line);
-            return ResponseHandler.generateResponse("Success" ,HttpStatus.CREATED,results);
+            return ResponseHandler.generateResponse("Success", HttpStatus.CREATED, results);
         } catch (Exception e) {
             logger.error("------------------------------------");
             logger.error(e.getMessage());
             logger.error("------------------------------------");
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST, "Bad Request");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Bad Request");
 
         }
 

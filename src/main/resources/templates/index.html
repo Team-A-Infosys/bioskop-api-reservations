@@ -25,6 +25,9 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
   <!-- Variables CSS Files. Uncomment your preferred color scheme -->
   <!-- <link href="assets/css/variables.css" rel="stylesheet"> -->
   <!-- <link href="assets/css/variables-blue.css" rel="stylesheet"> -->
@@ -37,6 +40,12 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Tambah CSS JS Bootstrap 4 For Modal -->
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+
   <!-- =======================================================
   * Template Name: HeroBiz - v2.1.0
   * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
@@ -46,12 +55,36 @@
 </head>
 
 <body>
+<!-- ======= Canvas Add ======= -->
+<div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title bg-dark text-light" id="offcanvasWithBothOptionsLabel">Book you Tickets</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" style="background-color: rgb(12, 12, 12);">
+    <a class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+      <img src="https://ist.id/image/Logo-09.png" alt="" width="30"  class="d-inline-block align-text-top">
+      Bioskop Reservation Project
+    </a>
+    <form action="#" th:action="@{/tambah-bookings}" th:object="${bookings}" method="post">
+      <label class="form-label" for="userId">user</label>
+      <input class="form-control" type="number" th:field="*{user.userId}" id="userId" placeholder="Please input with userId">
+      <!--    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+      <label class="form-label" for="scheduleId">Schedule</label>
+      <input class="form-control" type="number" th:field="*{schedule.scheduleId}" id="scheduleId" placeholder="Please input with scheduleId">
+      <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+      <label class="form-label" for="scheduleId">Schedule</label>
+      <button type="submit" class="btn btn-info mt-3">Add new Booking</button>
+    </form>
+  </div>
+</div>
+<!-- ======= End Canvas Add ======= -->
 
-  <!-- ======= Header ======= -->
+<!-- ======= Header ======= -->
   <header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="/" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>CineCat<span>.</span></h1>
@@ -59,33 +92,31 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="index.html#header">Home</a></li>
-          <li><a class="nav-link scrollto" th:href="@{/films}" target="_blank">Films</a></li>
-          <li><a class="nav-link scrollto" th:href="@{/getseats}" target="_blank">Seats</a></li>
-          <li><a class="nav-link scrollto" th:href="@{/schedule/AllSchedule}" target="_blank">Schedule</a></li>
-          <li><a class="nav-link scrollto" th:href="@{/bookings}" target="_blank">Booking</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about" >About</a></li>
-          <li><a class="nav-link scrollto" href="index.html#faq">FAQ</a></li>
-          <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
-          
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="#films">Films</a></li>
+          <li><a class="nav-link scrollto" href="#studio-seats">Seats</a></li>
+          <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+          <li><a class="nav-link scrollto" href="#header">Booking</a></li>
+          <li><a class="nav-link scrollto" href="#about" >About</a></li>
+          <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
-
-      <a class="btn-getstarted scrollto" href="index.html#about">Get Your Tickets</a>
+      <a class="btn-getstarted scrollto" th:href="@{/management}">Admin</a>
 
     </div>
   </header><!-- End Header -->
 
   <section id="hero-animated" class="hero-animated d-flex align-items-center">
     <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-      <img src="assets/img/hero-carousel/hero-carousel-3.svg" class="img-fluid animated">
+      <img src="assets/img/Thor-Love-and-Thunder.jpg" class="img-fluid animated">
       <h2>Welcome to <span>Cinema of Cat</span></h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat aliquid perspiciatis beatae amet officiis, molestias est minus, libero unde corrupti minima architecto, inventore temporibus qui! Rem qui minima ut aut!</p>
+      <p>Get your tickets now!</p>
       <div class="d-flex">
         <a href="#about" class="btn-get-started scrollto">Get Your Tickets</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Trailer</span></a>
+        <a href="https://www.youtube.com/watch?v=WhpKKx2168Y&t=46s" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Trailer</span></a>
       </div>
     </div>
   </section>
@@ -93,7 +124,7 @@
   <main id="main">
 
     <!-- ======= Films Section ======= -->
-    <section id="portfolio" class="portfolio" data-aos="fade-up">
+    <section id="films" class="portfolio" data-aos="fade-up">
 
       <div class="container">
 
@@ -108,133 +139,228 @@
 
         <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order">
 
-          <ul class="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">Love</li>
-            <li data-filter=".filter-product">Comedy</li>
-            <li data-filter=".filter-branding">Super Hero</li>
-            <li data-filter=".filter-books">Archive</li>
-          </ul><!-- End Portfolio Filters -->
-
           <div class="row g-0 portfolio-container">
+            <div th:switch="${listFilms}">
+              <h2 th:case="null">No films yet!</h2>
+              <div th:case="*">
+            <span th:each="film : ${listFilms}">
 
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-hero">
+              <img src="assets/img/Thor-Love-and-Thunder.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>App 1</h4>
-                <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                <h4><span th:text="${film.name}"></span></h4>
+                <p th:text="${film.isPlaying}" style="color:white;"></p>
+                <a href="assets/img/Thor-Love-and-Thunder.jpg" title="Thor Love and Thunder" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a href="#" title="Book your tickets" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                <a class="btn-get-started" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Book Your Ticket</a>
+
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
               </div>
-            </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 1</h4>
-                <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2</h4>
-                <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 2</h4>
-                <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 2</h4>
-                <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-app">
-              <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-              <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 3</h4>
-                <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-              <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 3</h4>
-                <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-              <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Books 3</h4>
-                <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
-
+            </span>
+                <!-- End Film Item -->
+            </div>
+          </div>
         </div>
+          <!-- End Film Container -->
 
       </div>
+      </div>
+      <!-- Film Pagination -->
+      <div th:if="${totalPages <= 10}">
+        <span th:if="${page!=null or #httpServletRequest.requestURI == '/'}">
+            <div class="container mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link text-decoration-none" th:href="@{'/films-page-' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
+                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                    <li class="page-item"><a class="page-link" th:href="@{'/films-page-' + ${i}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                </span>
+                                <li class="page-item"> <a class="page-link" th:href="@{'/films-page-' + ${currentPage + 1}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                <li class="page-item"><a class="page-link" th:href="@{'/films-page-' + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </span>
+      </div>
+      <!-- End Film Pagination -->
+
     </section><!-- End Films Section -->
 
+    <!-- Modal Seat Studio A -->
+    <div class="modal fade bd-example-modal-lg" id="modalSeat" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Studio A</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div th:switch="${seatsA}">
+              <h2 th:case="null">No seats yet!</h2>
+              <div th:case="*">
+                <h2>Kursi Bioskop</h2>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Studio</th>
+                    <th>No Kursi</th>
+                    <th>Available</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="seat : ${seatsA}">
+                    <td th:text="${seat.studioName}"></td>
+                    <td th:text="${seat.seatNumber}"></td>
+                    <td th:text="${seat.isAvailable}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Seat Studio B-->
+    <div class="modal fade bd-example-modal-lg" id="modalSeatB" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Studio B</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div th:switch="${seatsB}">
+              <h2 th:case="null">No seats yet!</h2>
+              <div th:case="*">
+                <h2>Kursi Bioskop</h2>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Studio</th>
+                    <th>No Kursi</th>
+                    <th>Available</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="seat : ${seatsB}">
+                    <td th:text="${seat.studioName}"></td>
+                    <td th:text="${seat.seatNumber}"></td>
+                    <td th:text="${seat.isAvailable}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Seat Studio C-->
+    <div class="modal fade bd-example-modal-lg" id="modalSeatC" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Studio C</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div th:switch="${seatsC}">
+              <h2 th:case="null">No seats yet!</h2>
+              <div th:case="*">
+                <h2>Kursi Bioskop</h2>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Studio</th>
+                    <th>No Kursi</th>
+                    <th>Available</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="seat : ${seatsC}">
+                    <td th:text="${seat.studioName}"></td>
+                    <td th:text="${seat.seatNumber}"></td>
+                    <td th:text="${seat.isAvailable}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Seat Studio B-->
+    <div class="modal fade bd-example-modal-lg" id="modalSeatD" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Studio D</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div th:switch="${seatsD}">
+              <h2 th:case="null">No seats yet!</h2>
+              <div th:case="*">
+                <h2>Kursi Bioskop</h2>
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>Studio</th>
+                    <th>No Kursi</th>
+                    <th>Available</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="seat : ${seatsD}">
+                    <td th:text="${seat.studioName}"></td>
+                    <td th:text="${seat.seatNumber}"></td>
+                    <td th:text="${seat.isAvailable}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ======= Studio/seats Section ======= -->
-    <section id="featured-services" class="featured-services">
+    <section id="studio-seats" class="featured-services">
       <div class="container">
 
         <div class="row gy-4">
@@ -242,32 +368,32 @@
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-activity icon"></i></div>
-              <h4><a href="" class="stretched-link">Sudio A</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <h4><a href="" data-bs-toggle="modal" data-bs-target="#modalSeat" class="stretched-link">Studio A</a></h4>
+              <p>Daftar & Status Kursi CineCat. di Studio A</p>
             </div>
           </div><!-- End Studio/seats Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-              <h4><a href="" class="stretched-link">Sudio B</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <h4><a href="" data-bs-toggle="modal" data-bs-target="#modalSeatB" class="stretched-link">Studio B</a></h4>
+              <p>Daftar & Status Kursi CineCat. di Studio B</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-              <h4><a href="" class="stretched-link">Studio C</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <h4><a href="" data-bs-toggle="modal" data-bs-target="#modalSeatC" class="stretched-link">Studio C</a></h4>
+              <p>Daftar & Status Kursi CineCat. di Studio C</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
             <div class="service-item position-relative">
               <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-              <h4><a href="" class="stretched-link">Studio D</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="" data-bs-toggle="modal" data-bs-target="#modalSeatD" class="stretched-link">Studio D</a></h4>
+              <p>Daftar & Status Kursi CineCat. di Studio D</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -276,128 +402,6 @@
       </div>
     </section><!-- End Featured Services Section -->
 
-     <!-- ======= Schedule Section ======= -->
-     <section id="services" class="services">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Our Schedule</h2>
-          <p>Ea vitae aspernatur deserunt voluptatem impedit deserunt magnam occaecati dssumenda quas ut ad dolores adipisci aliquam.</p>
-        </div>
-
-        <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-activity"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Monday</h3>
-                </a>
-                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis.</p>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-broadcast"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Tuesday</h3>
-                </a>
-                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-3.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-easel"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Wednesday</h3>
-                </a>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="500">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-4.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-bounding-box-circles"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Thursday</h3>
-                </a>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-5.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-calendar4-week"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Saturday</h3>
-                </a>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="700">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/services-6.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-chat-square-text"></i>
-                </div>
-                <a href="#" class="stretched-link">
-                  <h3>Sunday</h3>
-                </a>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-                <a href="#" class="stretched-link"></a>
-              </div>
-            </div>
-          </div><!-- End Schedule Item -->
-
-        </div>
-
-      </div>
-    </section><!-- End Schedule Section -->
-
-    <!-- ======= About CineCat Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -586,7 +590,7 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                     <i class="bi bi-question-circle question-icon"></i>
-                   "Kenapa mas habib orang jawa sendiri disini?" Vionski bertanya 2022 
+                   "Kenapa mas habib orang jawa sendiri disini?" Vionski bertanya 2022
                   </button>
                 </h3>
                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -617,6 +621,59 @@
 
         <div class="row gy-5">
 
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+                <h4>Walter White</h4>
+                <span>Chief Executive Officer</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+                <h4>Sarah Jhonson</h4>
+                <span>Product Manager</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+                <h4>William Anderson</h4>
+                <span>CTO</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
           <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
@@ -760,19 +817,19 @@
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="https://www.ist.id">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#portfolio">Films</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#featured-services">Seats</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Schedule</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#header">Booking</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#films">Films</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#studio-seats">Seats</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#schedule">Schedule</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#header">Booking</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Unuseful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#faq">FAQ</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="index.html#team">Team</a></li>
+              <li><i class="bi bi-chevron-right nav-link scrollto"></i> <a href="#about">About</a></li>
+              <li><i class="bi bi-chevron-right nav-link scrollto"></i> <a href="#faq">FAQ</a></li>
+              <li><i class="bi bi-chevron-right nav-link scrollto"></i> <a href="#team">Team</a></li>
             </ul>
           </div>
 

@@ -22,10 +22,10 @@ public class ScheduleResponseDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateShow;
 
-//    @JsonFormat(pattern = "HH-mm-ss")
+    //    @JsonFormat(pattern = "HH-mm-ss")
     private LocalTime showStart;
 
-//    @JsonFormat(pattern = "HH-mm-ss")
+    //    @JsonFormat(pattern = "HH-mm-ss")
     private LocalTime showEnd;
 
     private Integer price;

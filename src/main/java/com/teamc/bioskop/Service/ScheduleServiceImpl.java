@@ -16,25 +16,25 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleRepository scheduleRepository;
 
     //Get All
-    public List<Schedule> getAll(){
+    public List<Schedule> getAll() {
         List<Schedule> optionalSchedule = this.scheduleRepository.findAll();
-        if(optionalSchedule.isEmpty()){
+        if (optionalSchedule.isEmpty()) {
             throw new ResourceNotFoundException("Schedule not exist");
         }
         return this.scheduleRepository.findAll();
     }
 
     //Get By ID
-    public Optional<Schedule> getScheduleById(Integer Id) throws ResourceNotFoundException{
+    public Optional<Schedule> getScheduleById(Integer Id) throws ResourceNotFoundException {
         Optional<Schedule> optionalSchedule = this.scheduleRepository.findById(Id);
-        if(optionalSchedule == null){
+        if (optionalSchedule == null) {
             throw new ResourceNotFoundException("Schedule not exist with id : " + Id);
         }
         return this.scheduleRepository.findById(Id);
     }
 
     //Post
-    public Schedule createSchedule(Schedule schedule){
+    public Schedule createSchedule(Schedule schedule) {
         return this.scheduleRepository.save(schedule);
     }
 
@@ -42,23 +42,24 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule updateSchedule(Schedule schedule) {
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(schedule.getScheduleId());
-        if(optionalSchedule == null){
+        if (optionalSchedule == null) {
             throw new ResourceNotFoundException("User not exist with id : " + schedule.getScheduleId());
         }
         return this.scheduleRepository.save(schedule);
     }
-    public Schedule getReferenceById (Integer id) {
+
+    public Schedule getReferenceById(Integer id) {
 
         return this.scheduleRepository.getReferenceById(id);
     }
 
     //Delete
-    public void deleteScheduleById(Integer Id){
+    public void deleteScheduleById(Integer Id) {
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(Id);
-        if(optionalSchedule == null){
+        if (optionalSchedule == null) {
             throw new ResourceNotFoundException("Schedule not exist with id : " + Id);
         }
-            Schedule schedule = scheduleRepository.getReferenceById(Id) ;
+        Schedule schedule = scheduleRepository.getReferenceById(Id);
         this.scheduleRepository.delete(schedule);
     }
 
@@ -66,7 +67,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> getScheduleByFilmName(String name) {
         List<Schedule> getScheduleByFilmName = this.scheduleRepository.getScheduleByFilmName(name);
-        if (getScheduleByFilmName.isEmpty()){
+        if (getScheduleByFilmName.isEmpty()) {
             throw new ResourceNotFoundException("Schedule with film name " + name + " is not exist!!!!!");
         }
         return this.scheduleRepository.getScheduleByFilmName(name);
@@ -75,7 +76,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<Schedule> getScheduleByFilmNameLike(String name) {
         List<Schedule> getScheduleByFilmNameLike = this.scheduleRepository.getScheduleFilmsNameLike(name);
-        if (getScheduleByFilmNameLike == null){
+        if (getScheduleByFilmNameLike == null) {
             throw new ResourceNotFoundException("Schedule with film name " + name + " is not exist!!!!!");
         }
         return this.scheduleRepository.getScheduleFilmsNameLike(name);

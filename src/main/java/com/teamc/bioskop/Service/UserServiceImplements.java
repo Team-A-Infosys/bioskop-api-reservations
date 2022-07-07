@@ -15,16 +15,16 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImplements implements UserService{
+public class UserServiceImplements implements UserService {
     private final UserRepository userRepository;
 
     /***
      * Get All User
      * @return
      */
-    public List<User> getAll(){
+    public List<User> getAll() {
         List<User> user = userRepository.findAll();
-        if(user.isEmpty()){
+        if (user.isEmpty()) {
             throw new ResourceNotFoundException("User not exist with id :");
         }
         return this.userRepository.findAll();
@@ -36,9 +36,9 @@ public class UserServiceImplements implements UserService{
      * @param users_Id
      * @return
      */
-    public Optional<User> getUserById(Long users_Id){
+    public Optional<User> getUserById(Long users_Id) {
         Optional<User> optionalUser = userRepository.findById(users_Id);
-        if(optionalUser == null){
+        if (optionalUser == null) {
             throw new ResourceNotFoundException("User not exist with id :" + users_Id);
         }
         return this.userRepository.findById(users_Id);
@@ -49,7 +49,7 @@ public class UserServiceImplements implements UserService{
      * @param user
      * @return
      */
-    public User createUser(User user){
+    public User createUser(User user) {
 
         return this.userRepository.save(user);
     }
@@ -61,7 +61,7 @@ public class UserServiceImplements implements UserService{
     @Override
     public void deleteUserById(Long users_Id) {
         Optional<User> optionalUser = userRepository.findById(users_Id);
-        if(optionalUser == null){
+        if (optionalUser == null) {
             throw new ResourceNotFoundException("User not exist with id :" + users_Id);
         }
         User user = userRepository.getReferenceById(users_Id);
@@ -74,9 +74,9 @@ public class UserServiceImplements implements UserService{
      * @return
      * @throws Exception
      */
-    public User updateUser(User user, Long userId){
+    public User updateUser(User user, Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
-        if(optionalUser == null){
+        if (optionalUser == null) {
             throw new ResourceNotFoundException("User not exist with id :" + user.getUserId());
         }
         return this.userRepository.save(user);
@@ -88,10 +88,10 @@ public class UserServiceImplements implements UserService{
     }
 
     @Override
-    public Optional<User> findbyid(Long id){
+    public Optional<User> findbyid(Long id) {
 
         Optional<User> optionalUsers = userRepository.findById(id);
-        if (optionalUsers == null){
+        if (optionalUsers == null) {
             throw new ResourceNotFoundException(" Seats not Exist with id :" + id);
         }
         return userRepository.findById(id);
