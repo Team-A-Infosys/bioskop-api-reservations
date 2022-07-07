@@ -31,7 +31,6 @@ public class MVCFilmController {
         return paginatedFilm(1, model);
     }
 
-
     @GetMapping("/films-status")
     public String showFilmsByStatus(@RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms, Model model) {
         return paginatedFilmByStatus(1, model, statusFilms);
@@ -68,6 +67,13 @@ public class MVCFilmController {
         model.addAttribute("listFilms", filmsList);
 
         return "films";
+    }
+
+    @GetMapping("/add-film")
+    public String addFilm(Model model) {
+        Films films = new Films();
+        model.addAttribute("film", films);
+        return "add-film";
     }
 
     @PostMapping("/tambah-film")
