@@ -96,8 +96,6 @@
           <li><a class="nav-link scrollto" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="#films">Films</a></li>
           <li><a class="nav-link scrollto" href="#studio-seats">Seats</a></li>
-          <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
-          <li><a class="nav-link scrollto" href="#header">Booking</a></li>
           <li><a class="nav-link scrollto" href="#about" >About</a></li>
           <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
@@ -116,7 +114,8 @@
       <h2>Welcome to <span>Cinema of Cat</span></h2>
       <p>Get your tickets now!</p>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Get Your Tickets</a>
+        <a class="btn-get-started text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+          Get Your Tickets</a>
         <a href="https://www.youtube.com/watch?v=WhpKKx2168Y&t=46s" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Trailer</span></a>
       </div>
     </div>
@@ -147,12 +146,10 @@
             <span th:each="film : ${listFilms}">
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-hero">
-              <img src="assets/img/Thor-Love-and-Thunder.jpg" class="img-fluid" alt="">
+              <img th:src="@{/showFile/{fileId}(fileId=${film.attachment.id})}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4><span th:text="${film.name}"></span></h4>
                 <p th:text="${film.isPlaying}" style="color:white;"></p>
-                <a href="assets/img/Thor-Love-and-Thunder.jpg" title="Thor Love and Thunder" data-gallery="portfolio-gallery" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="#" title="Book your tickets" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 <a class="btn-get-started" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Book Your Ticket</a>
 
               </div>
@@ -534,7 +531,7 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Kenapa mau masuk infosys?
+                    Kenapa masuk infosys?
                   </button>
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -548,12 +545,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Kenapa mau jadi fullstack?
+                    Kenapa jadi fullstack?
                   </button>
                 </h3>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Sebenarnya, ga mau... cuma ya udah ditenggelamin.
+                    Karena, alur dan terpaan badai.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -616,16 +613,16 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Our Slave</h2>
+          <h2>Our Cat Crew and Fasil</h2>
           <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
         </div>
 
         <div class="row gy-5">
 
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-xl-4 col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img th:src="@{/assets/img/cat-thinking.jpg}" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -634,16 +631,16 @@
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4>Harist Islami</h4>
+                <span>Cat Man 01</span>
               </div>
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
+          <div class="col-xl-4 col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <img th:src="@{/assets/img/cat-work.jpg}" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -652,16 +649,16 @@
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
+                <h4>Habib Alimuddin</h4>
+                <span>Cat Man 02</span>
               </div>
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
+          <div class="col-xl-4 col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="600">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <img th:src="@{/assets/img/cat pop.jpg}" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -670,15 +667,15 @@
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
-                <h4>William Anderson</h4>
-                <span>CTO</span>
+                <h4>Yellia Viona</h4>
+                <span>Cat Woman 01</span>
               </div>
             </div>
           </div><!-- End Team Member -->
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-xl-6 col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img th:src="@{/assets/img/cat-laptop.jpg}" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -687,34 +684,16 @@
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div><!-- End Team Member -->
-
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="member-info">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
+                <h4>Hasnul Fikri</h4>
+                <span>Cat Man 03</span>
               </div>
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-in" data-aos-delay="600">
+          <div class="col-xl-4  col-md-6 d-flex justify-content-center" data-aos="zoom-in" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <img th:src="@{/assets/img/cat-seen.jpg}" class="img-fluid" alt="">
               </div>
               <div class="member-info">
                 <div class="social">
@@ -723,11 +702,13 @@
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
-                <h4>William Anderson</h4>
-                <span>CTO</span>
+                <h4>Fasil</h4>
+                <span>&#128511;</span>
               </div>
             </div>
           </div><!-- End Team Member -->
+
+          <!-- End Team Member -->
 
         </div>
 
