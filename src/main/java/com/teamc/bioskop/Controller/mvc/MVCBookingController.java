@@ -32,6 +32,7 @@ public class MVCBookingController {
     private final ScheduleService scheduleService;
 
 
+
     @GetMapping("/bookings")
     public String bookingList(Model model) {
         model.addAttribute("bookings", bookingService.getAll());
