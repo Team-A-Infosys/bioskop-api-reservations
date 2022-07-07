@@ -33,15 +33,15 @@ public class MVCSeatsController {
     }
 
     @GetMapping("/add-seats")
-    public String formSeats(Model model){
+    public String formSeats(Model model) {
         Seats seat = new Seats();
-        model.addAttribute("seats",seat);
+        model.addAttribute("seats", seat);
 
         return "add-seats";
     }
 
     @PostMapping("/added-seats")
-    public String newSeats(@ModelAttribute("seats") Seats seats){
+    public String newSeats(@ModelAttribute("seats") Seats seats) {
         this.seatService.createseat(seats);
         return "success-added-seats";
     }
@@ -50,7 +50,7 @@ public class MVCSeatsController {
     Update Seats Session
      */
     @GetMapping("/update/seat/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model){
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Seats seat = this.seatService.getReferenceById(id);
         model.addAttribute("seat", seat);
         return "update-seat";
@@ -58,14 +58,14 @@ public class MVCSeatsController {
 
     @PostMapping("/update/seat/{id}")
     public String updateById(@PathVariable("id") Long id,
-                             @ModelAttribute("seats") Seats seats){
+                             @ModelAttribute("seats") Seats seats) {
         seats.setSeatId(id);
-        this.seatService.updateseat(seats,id);
+        this.seatService.updateseat(seats, id);
         return "success-updated-seats";
     }
 
     @GetMapping("/delete/seat/{id}")
-    public String deleteSeat(@PathVariable("id") long id, Model model){
+    public String deleteSeat(@PathVariable("id") long id, Model model) {
         Seats seats = seatService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         seatService.deleteseat(id);
         return "redirect:/getseats";

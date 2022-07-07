@@ -31,13 +31,13 @@ public class UserController {
      * @return
      */
     @GetMapping("/users")
-    public ResponseEntity <Object> getAllUser(){
+    public ResponseEntity<Object> getAllUser() {
         try {
-            List <User> result = userServiceImplements.getAll();
+            List<User> result = userServiceImplements.getAll();
             List<Map<String, Object>> maps = new ArrayList<>();
             logger.info("==================== Logger Start Get All Users     ====================");
 
-            for(User userData : result){
+            for (User userData : result) {
                 Map<String, Object> user = new HashMap<>();
 
                 logger.info("-------------------------");
@@ -57,7 +57,7 @@ public class UserController {
             return ResponseHandler.generateResponse("Successfully Get All User!", HttpStatus.OK, result);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get All Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Table has no value"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Table has no value"));
             logger.info("==================== Logger End Get All Users     ====================");
             logger.info(" ");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.MULTI_STATUS, "Table Has No Value!");
@@ -96,10 +96,10 @@ public class UserController {
             return ResponseHandler.generateResponse("Successfully Get User By ID!", HttpStatus.OK, maps);
         } catch (Exception e) {
             logger.info("==================== Logger Start Get By ID Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Get By ID Users     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!" );
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
 
     }
@@ -110,7 +110,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/users")
-    public ResponseEntity <Object> createUser(@RequestBody User user) {
+    public ResponseEntity<Object> createUser(@RequestBody User user) {
 
         try {
 //            userServiceImplements.createUser(user);
@@ -135,7 +135,7 @@ public class UserController {
             return ResponseHandler.generateResponse("Successfully Created User!", HttpStatus.CREATED, maps);
         } catch (Exception e) {
             logger.info("==================== Logger Start Create Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.BAD_REQUEST,"User Already Exist!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "User Already Exist!"));
             logger.info("==================== Logger End Create Users     ====================");
             logger.info(" ");
             return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "User Already Exist!");
@@ -150,7 +150,7 @@ public class UserController {
      * @return
      */
     @PutMapping("/users/{users_Id}")
-    public ResponseEntity<Object> updateUser(@PathVariable Long users_Id, @RequestBody User userDetails){
+    public ResponseEntity<Object> updateUser(@PathVariable Long users_Id, @RequestBody User userDetails) {
         try {
             User user = userServiceImplements.getUserById(users_Id)
                     .orElseThrow(() -> new ResourceNotFoundException("User not exist with user_Id :" + users_Id));
@@ -168,13 +168,13 @@ public class UserController {
             logger.info("Password : " + user.getPassword());
             logger.info("==================== Logger End Update Users   ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse("Successfully Updated User!",HttpStatus.OK, user);
-        }catch(Exception e){
+            return ResponseHandler.generateResponse("Successfully Updated User!", HttpStatus.OK, user);
+        } catch (Exception e) {
             logger.info("==================== Logger Start Update Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Update Users     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!");
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
 
     }
@@ -185,7 +185,7 @@ public class UserController {
      * @return
      */
     @DeleteMapping("/users/{users_Id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable Long users_Id){
+    public ResponseEntity<Object> deleteUser(@PathVariable Long users_Id) {
         try {
             userServiceImplements.deleteUserById(users_Id);
             Map<String, Boolean> response = new HashMap<>();
@@ -195,12 +195,12 @@ public class UserController {
             logger.info("==================== Logger End Delete Users   ====================");
             logger.info(" ");
             return ResponseHandler.generateResponse("Successfully Delete User! ", HttpStatus.OK, response);
-        } catch (ResourceNotFoundException e){
+        } catch (ResourceNotFoundException e) {
             logger.info("==================== Logger Start Delete Users     ====================");
-            logger.error(ResponseHandler.generateResponse(e.getMessage(),HttpStatus.NOT_FOUND,"Data Not Found!"));
+            logger.error(ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!"));
             logger.info("==================== Logger End Delete Users     ====================");
             logger.info(" ");
-            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!" );
+            return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.NOT_FOUND, "Data Not Found!");
         }
     }
 }

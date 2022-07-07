@@ -29,7 +29,7 @@ public class ScheduleRequestDTO {
     private LocalTime showEnd;
     private Integer price;
 
-    public Schedule convertToEntity(){
+    public Schedule convertToEntity() {
         return Schedule.builder().scheduleId(this.scheduleId).films(this.films).seats(this.seats)
                 .dateShow(this.dateShow).showStart(this.showStart)
                 .showEnd(this.showEnd).price(this.price)
