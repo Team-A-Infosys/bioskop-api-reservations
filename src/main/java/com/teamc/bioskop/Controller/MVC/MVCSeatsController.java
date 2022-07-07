@@ -1,5 +1,7 @@
 package com.teamc.bioskop.Controller.MVC;
 
+import com.teamc.bioskop.Model.Booking;
+import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
@@ -13,18 +15,7 @@ public class MVCSeatsController {
 
     private final SeatsService seatService;
 
-    @GetMapping("/")
-    public String showIndex(Model model, String studioA, String studioB, String studioC, String studioD) {
-        studioA = "Studio A";
-        studioB = "Studio B";
-        studioC = "Studio C";
-        studioD = "Studio D";
-        model.addAttribute("seatsA", seatService.getSeatsByStudioName(studioA));
-        model.addAttribute("seatsB", seatService.getSeatsByStudioName(studioB));
-        model.addAttribute("seatsC", seatService.getSeatsByStudioName(studioC));
-        model.addAttribute("seatsD", seatService.getSeatsByStudioName(studioD));
-        return "index";
-    }
+
 
     @GetMapping("/getseats")
     public String showSeats(Model model){
