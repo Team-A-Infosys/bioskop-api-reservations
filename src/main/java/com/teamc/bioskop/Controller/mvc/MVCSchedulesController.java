@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Service.ScheduleService;
 import lombok.AllArgsConstructor;
