@@ -14,7 +14,7 @@
     <h2 th:case="null">No Schedules yet!</h2>
     <div th:case="*">
         <h2>Movie Schedules</h2>
-        <table class = "table">
+        <table class="table table-danger table-striped">
             <thead>
             <tr>
                 <th>Movies</th>
@@ -23,6 +23,9 @@
                 <th>Movie End</th>
                 <th>Movie Price</th>
                 <th>Seat Number</th>
+                <th>Edit Schedule</th>
+                <th>Delete Schedule</th>
+
             </tr>
             </thead>
             <tbody>
@@ -34,8 +37,9 @@
                 <td th:text="${schedule.price}"></td>
                 <td th:text="${schedule.seats.seatNumber}"></td>
 
-                <td><a th:href="@{/update/schedule/{id}(id=${schedule.scheduleId})}">Edit</a></td>
-                <td><a th:href="@{/delete/schedule/{id}(id=${schedule.scheduleId})}">Delete</a></td>
+                <td><a th:href="@{/update/schedule/{id}(id=${schedule.scheduleId})}"><button type="submit">Edit</button></a></td>
+                <td><a th:href="@{/delete/schedule/{id}(id=${schedule.scheduleId})}"><button type="submit">Delete</button></a></td>
+                <
             </tr>
             </tbody>
     </table>
