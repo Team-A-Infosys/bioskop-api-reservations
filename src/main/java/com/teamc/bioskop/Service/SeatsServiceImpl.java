@@ -77,4 +77,10 @@ public class SeatsServiceImpl implements SeatsService {
         return this.seatRepository.getSeatAvailable(isAvailable);
     }
 
+    @Override
+    public List<Seats> getSeatsByStudioName(String studioName){
+        List<Seats> optionStudio = seatRepository.findByStudioName(studioName);
+
+        return optionStudio;
+    }
 }

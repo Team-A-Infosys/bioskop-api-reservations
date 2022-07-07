@@ -26,6 +26,12 @@ public class MVCSeatsController {
         return "index";
     }
 
+    @GetMapping("/getseats")
+    public String showSeats(Model model){
+        model.addAttribute("seats", seatService.findAllseats());
+        return "seats";
+    }
+
     @GetMapping("/add-seats")
     public String formSeats(Model model){
         Seats seat = new Seats();
