@@ -34,7 +34,7 @@ public class MVCSeatsController {
     @PostMapping("/added-seats")
     public String newSeats(@ModelAttribute("seats") Seats seats) {
         this.seatService.createseat(seats);
-        return "success-added-seats";
+        return "dashboard";
     }
 
     /*

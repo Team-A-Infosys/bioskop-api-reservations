@@ -44,7 +44,7 @@
         <div class="card-body">
           <h5 class="card-title">Seats</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a th:href="@{/add-seats}" class="btn btn-primary">Add Data</a>
+          <a href="" data-bs-toggle="modal" data-bs-target="#modalInpSeat" class="btn btn-primary">Add Seats</a>
           <a th:href="@{/getseats}" class="btn btn-primary">Edit</a>
         </div>
       </div>
@@ -68,10 +68,10 @@
         <div class="card" style="width: 18rem;">
           <img src="assets/img/cat-thinking.jpg" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Films</h5>
+            <h5 class="card-title">Users</h5>
             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a th:href="@{/add-seats}" class="btn btn-primary">Add Data</a>
-            <a th:href="@{/films}" class="btn btn-primary">Edit</a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#modalInpUser" class="btn btn-primary">Add User</a>
+            <a th:href="@{/getusers}" class="btn btn-primary">Edit</a>
           </div>
         </div>
       </div>
@@ -80,6 +80,81 @@
 
   </div>
 
+
+
+<!-- Modal Input Seat-->
+<div class="modal fade" id="modalInpSeat" tabindex="-1" aria-labelledby="modalInpSeatLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalInpSeatLabel">Input Kursi Baru</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#" th:action="@{/added-seats}" th:object="${seats}" method="post">
+          <div class="mb-3">
+            <label class="form-label">Studio</label>
+            <select class="form-select" name="studioName" id="studioName" aria-label="Default select example">
+              <option selected>Pilih Studio</option>
+              <option value="Studio A">Studio A</option>
+              <option value="Studio B">Studio B</option>
+              <option value="Studio C">Studio C</option>
+              <option value="Studio D">Studio D</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">No Kursi</label>
+            <input class="form-control" name="seatNumber" id="seatNumber" placeholder="Nomor Kursi">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Is Available</label>
+            <select class="form-select" name="isAvailable" aria-label="Default select example">
+              <option selected>Status Kursi</option>
+              <option value="AVAILABLE">AVAILABLE</option>
+              <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Input User-->
+<div class="modal fade" id="modalInpUser" tabindex="-1" aria-labelledby="modalInpUserLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalInpUserLabel">Input New User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="#" th:action="@{/added-user}" th:object="${user}" method="post">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input class="form-control" name="username" id="username" placeholder="Username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="emailId" id="emailId" placeholder="Email@email.com">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
