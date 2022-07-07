@@ -21,5 +21,6 @@ public interface SeatsService {
     Seats getReferenceById(Long id);
 
     List<Seats> getSeatAvailable(StatusSeats isAvailable);
+    List<Seats> getSeatsByStudioName(String studioName);
 
 }
