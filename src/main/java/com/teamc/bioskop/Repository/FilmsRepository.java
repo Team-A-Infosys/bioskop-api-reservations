@@ -16,4 +16,4 @@ public interface FilmsRepository extends JpaRepository<Films, Long> {
     List<Films> findFilmByIsPlaying(StatusFilms isPlaying);
 
     Page<Films> findFilmByIsPlaying(StatusFilms isPlaying, Pageable pageable);
-  }
+}

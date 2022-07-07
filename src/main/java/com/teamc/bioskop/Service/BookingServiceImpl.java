@@ -11,14 +11,14 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class BookingServiceImpl implements BookingService{
+public class BookingServiceImpl implements BookingService {
 
     private BookingRepository bookingRepository;
 
     @Override
     public List<Booking> getAll() {
         List<Booking> optionalBooking = bookingRepository.findAll();
-        if(optionalBooking.isEmpty()){
+        if (optionalBooking.isEmpty()) {
             throw new ResourceNotFoundException("Data Booking not exist");
         }
         return this.bookingRepository.findAll();
@@ -27,10 +27,9 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public Optional<Booking> getBookingById(Long Id) throws ResourceNotFoundException {
         Optional<Booking> optionalBooking = bookingRepository.findById(Id);
-        if(optionalBooking.isPresent()){
+        if (optionalBooking.isPresent()) {
             return this.bookingRepository.findById(Id);
-        }
-        else {
+        } else {
             throw new ResourceNotFoundException("Booking not exist with id " + Id);
         }
     }
@@ -52,7 +51,7 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     public Booking createBooking(Booking booking) {
-          return this.bookingRepository.save(booking);
+        return this.bookingRepository.save(booking);
     }
 
     @Override
@@ -65,8 +64,8 @@ public class BookingServiceImpl implements BookingService{
     @Override
     public List<Booking> getBookingByFilmName(String name) {
         List<Booking> optionalBooking = bookingRepository.getBookingByFilmName(name);
-        if(optionalBooking.isEmpty()){
-            throw new ResourceNotFoundException("Booking not exist with Filmname " +name);
+        if (optionalBooking.isEmpty()) {
+            throw new ResourceNotFoundException("Booking not exist with Filmname " + name);
         }
         return this.bookingRepository.getBookingByFilmName(name);
     }
