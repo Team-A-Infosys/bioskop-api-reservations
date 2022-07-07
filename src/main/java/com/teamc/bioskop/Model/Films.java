@@ -1,5 +1,6 @@
 package com.teamc.bioskop.Model;
 
+import com.teamc.bioskop.Model.Attachment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.teamc.bioskop.Response.FilmsResponseDTO;
 import lombok.*;
@@ -33,6 +34,10 @@ public class Films {
 
     @UpdateTimestamp
     private ZonedDateTime updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "attachment_id")
+    private Attachment attachment;
 
     public FilmsResponseDTO convertToResponse() {
         return FilmsResponseDTO.builder().code(this.filmId)

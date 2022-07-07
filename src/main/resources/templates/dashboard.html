@@ -12,7 +12,7 @@
 <body>
 
 <div class="container mt-4">
-  <div class="row justifiy-content-between">
+  <div class="row justify-content-between">
 
     <div class="col-sm-4 mb-3 d-flex justify-content-center">
       <div class="card" style="width: 18rem;">
@@ -20,8 +20,8 @@
         <div class="card-body">
           <h5 class="card-title">Films</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a th:href="@{/add-film}" class="btn btn-primary">Add Data</a>
-          <a th:href="@{/films}" class="btn btn-primary">Edit</a>
+          <a th:href="@{/management/add-film}" class="btn btn-primary">Add Data</a>
+          <a th:href="@{/management/films}" class="btn btn-primary">Edit</a>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
     </div>
     </div>
 
-    <div class="row justifiy-content-between">
+    <div class="row h-100 justify-content-between" >
 
       <div class="col-sm-4 mb-3 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
@@ -74,6 +74,16 @@
             <a th:href="@{/getusers}" class="btn btn-primary">Edit</a>
           </div>
         </div>
+      </div>
+
+      <div class="col-sm-4 mb-3 d-flex justify-content-center align-items-end">
+
+        <div class="card border-" style="width: 18rem;">
+
+        <a class="btn btn-info text-light btn-sm-4 mb-3" th:href="@{/}">Back to Index</a>
+        </div>
+
+
       </div>
 
     </div>
