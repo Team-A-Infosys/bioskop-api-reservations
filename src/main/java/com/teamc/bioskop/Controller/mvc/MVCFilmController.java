@@ -18,18 +18,32 @@ import java.util.List;
 public class MVCFilmController {
 
     private final FilmsService filmsService;
+    @GetMapping("/management/films")
+    public String showIndex(Model model) {
 
-    private final SeatsService seatService;
+        return paginatedFilm(1, model);
+    }
+    @GetMapping("/management/films/{page}")
+    public String paginatedFilm(@PathVariable(value = "page") int pageNo, Model model) {
+        int pageSize = 5;
 
+        Page<Films> filmsPage = this.filmsService.findPaginated(pageNo, pageSize);
+        List<Films> filmsList = filmsPage.getContent();
 
-    @GetMapping("/films-status")
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", filmsPage.getTotalPages());
+        model.addAttribute("totalItems", filmsPage.getTotalElements());
+        model.addAttribute("listFilms", filmsList);
+
+        return "films";
+    }
+
+    @GetMapping("/management/films-status")
     public String showFilmsByStatus(@RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms, Model model) {
         return paginatedFilmByStatus(1, model, statusFilms);
     }
 
-
-
-    @GetMapping("/films-status/{pageStatus}")
+    @GetMapping("/management/films-status/{pageStatus}")
     public String paginatedFilmByStatus(@PathVariable(value = "pageStatus") int pageNo, Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms) {
         int pageSize = 5;
 
@@ -44,38 +58,38 @@ public class MVCFilmController {
         return "films";
     }
 
-    @GetMapping("/add-film")
+    @GetMapping("/management/add-film")
     public String addFilm(Model model) {
         Films films = new Films();
         model.addAttribute("film", films);
         return "add-film";
     }
 
-    @PostMapping("/tambah-film")
+    @PostMapping("/management/tambah-film")
     public String submitFilm(@ModelAttribute("film") Films films) {
         this.filmsService.createFilm(films);
-        return "redirect:/films";
+        return "redirect:/management/films";
     }
 
-    @GetMapping("/edit-film/{id}")
+    @GetMapping("/management/edit-film/{id}")
     public String showUpdatedForm(@PathVariable("id") Long id, Model model) {
         Films films = this.filmsService.getReferenceById(id);
         model.addAttribute("film", films);
         return "edit-film";
     }
 
-    @PostMapping("/edit-film/{id}")
+    @PostMapping("/management/edit-film/{id}")
     public String updateFilm(@PathVariable("id") Long id, @ModelAttribute("film") Films films) {
         films.setFilmId(id);
         this.filmsService.createFilm(films);
-        return "redirect:/films";
+        return "redirect:/management/films";
     }
 
-    @GetMapping("/delete-film/{id}")
+    @GetMapping("/management/delete-film/{id}")
     public String deleteFilm(@PathVariable("id") Long id) {
         this.filmsService.deleteFilmById(id);
 
-        return "redirect:/films";
+        return "redirect:/management/films";
     }
 
 }
