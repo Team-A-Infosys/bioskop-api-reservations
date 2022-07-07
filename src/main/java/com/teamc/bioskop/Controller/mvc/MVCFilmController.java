@@ -21,38 +21,13 @@ public class MVCFilmController {
 
     private final SeatsService seatService;
 
-    @GetMapping("/")
-    public String showIndex(Model model) {
-        Films films = new Films();
-        Booking bookings = new Booking();
-        model.addAttribute("film", films);
-        model.addAttribute("bookings", bookings);
-        model.addAttribute("seats", seatService.findAllseats());
-        return paginatedFilm(1, model);
-    }
 
     @GetMapping("/films-status")
     public String showFilmsByStatus(@RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms, Model model) {
         return paginatedFilmByStatus(1, model, statusFilms);
     }
 
-    @GetMapping("/films-page-{page}")
-    public String paginatedFilm(@PathVariable(value = "page") int pageNo, Model model) {
-        int pageSize = 8;
 
-        Page<Films> filmsPage = this.filmsService.findPaginated(pageNo, pageSize);
-        List<Films> filmsList = filmsPage.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", filmsPage.getTotalPages());
-        model.addAttribute("totalItems", filmsPage.getTotalElements());
-        model.addAttribute("listFilms", filmsList);
-        Booking bookings = new Booking();
-        model.addAttribute("bookings", bookings);
-
-
-        return "index";
-    }
 
     @GetMapping("/films-status/{pageStatus}")
     public String paginatedFilmByStatus(@PathVariable(value = "pageStatus") int pageNo, Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms) {
