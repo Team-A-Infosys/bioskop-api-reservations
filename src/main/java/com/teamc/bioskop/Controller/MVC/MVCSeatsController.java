@@ -1,14 +1,11 @@
-package com.teamc.bioskop.Controller.mvc;
+package com.teamc.bioskop.Controller.MVC;
 
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -16,10 +13,17 @@ public class MVCSeatsController {
 
     private final SeatsService seatService;
 
-    @GetMapping("/getseats")
-    public String showSeatsList(Model model) {
-        model.addAttribute("seats", seatService.findAllseats());
-        return "seats";
+    @GetMapping("/")
+    public String showIndex(Model model, String studioA, String studioB, String studioC, String studioD) {
+        studioA = "Studio A";
+        studioB = "Studio B";
+        studioC = "Studio C";
+        studioD = "Studio D";
+        model.addAttribute("seatsA", seatService.getSeatsByStudioName(studioA));
+        model.addAttribute("seatsB", seatService.getSeatsByStudioName(studioB));
+        model.addAttribute("seatsC", seatService.getSeatsByStudioName(studioC));
+        model.addAttribute("seatsD", seatService.getSeatsByStudioName(studioD));
+        return "index";
     }
 
     @GetMapping("/add-seats")
