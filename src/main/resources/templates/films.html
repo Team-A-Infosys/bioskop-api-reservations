@@ -27,7 +27,7 @@
                                 <form action="#" method="get" th:action="@{/management/films-status}">
                                     <div class="input-group mb-3">
                                         <select class="form-select" id="inputGroupSelect04" name="isPlaying">
-                                            <option value="">Choose</option>
+                                            <option disabled selected value>Choose</option>
                                             <option value="PLAYING">Playing</option>
                                             <option value="NOT_PLAYING">Not Playing</option>
                                         </select>
@@ -49,6 +49,7 @@
                         <tr th:each="film : ${listFilms}">
                             <td th:text="${film.name}"></td>
                             <td th:text="${film.isPlaying}"></td>
+                            <td><img th:src="@{/showFile/{fileId}(fileId=${film.attachment.id})}" class="img-fluid w-25" alt=""></td>
                             <td><a class="badge bg-warning" th:href="@{/management/edit-film/{id}(id=${film.filmId})}"><i class="bi bi-pencil-square"></i></a></td>
                             <td><a class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')" th:href="@{/management/delete-film/{id}(id=${film.filmId})}"><i class="bi bi-x-circle"></i></a></td>
                         </tr>

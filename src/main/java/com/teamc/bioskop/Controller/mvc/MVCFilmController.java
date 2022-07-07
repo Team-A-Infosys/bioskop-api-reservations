@@ -3,6 +3,7 @@ package com.teamc.bioskop.Controller.MVC;
 import com.teamc.bioskop.Model.Booking;
 import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
+import com.teamc.bioskop.Service.AttachmentService;
 import com.teamc.bioskop.Service.FilmsService;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MVCFilmController {
 
     private final FilmsService filmsService;
+    private final AttachmentService attachmentService;
     @GetMapping("/management/films")
     public String showIndex(Model model) {
 
@@ -45,6 +47,7 @@ public class MVCFilmController {
 
     @GetMapping("/management/films-status/{pageStatus}")
     public String paginatedFilmByStatus(@PathVariable(value = "pageStatus") int pageNo, Model model, @RequestParam(value = "isPlaying", required = false) StatusFilms statusFilms) {
+
         int pageSize = 5;
 
         Page<Films> filmsPage = this.filmsService.findPaginatedByStatus(statusFilms, pageNo, pageSize);
@@ -61,6 +64,7 @@ public class MVCFilmController {
     @GetMapping("/management/add-film")
     public String addFilm(Model model) {
         Films films = new Films();
+        model.addAttribute("attachment", this.attachmentService.findAllAttachment());
         model.addAttribute("film", films);
         return "add-film";
     }
@@ -74,6 +78,7 @@ public class MVCFilmController {
     @GetMapping("/management/edit-film/{id}")
     public String showUpdatedForm(@PathVariable("id") Long id, Model model) {
         Films films = this.filmsService.getReferenceById(id);
+        model.addAttribute("attachment", this.attachmentService.findAllAttachment());
         model.addAttribute("film", films);
         return "edit-film";
     }
@@ -90,6 +95,11 @@ public class MVCFilmController {
         this.filmsService.deleteFilmById(id);
 
         return "redirect:/management/films";
+    }
+
+    @GetMapping("/management/add-images")
+    public String showForm(){
+        return "add-images";
     }
 
 }
