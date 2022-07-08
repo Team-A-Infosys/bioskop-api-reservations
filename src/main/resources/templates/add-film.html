@@ -13,8 +13,8 @@
 <div class="container mt-5">
     <h2 class="text-center">Add New Film</h2>
     <div class="row justify-content-center">
-        <div class="col-sm-4 py-5" style="border: 1px solid">
-            <form action="#" th:action="@{/tambah-film}" th:object="${film}" method="post">
+        <div class="col-sm-4 py-3" style="border: 1px solid">
+            <form action="#"  enctype="multipart/form-data" th:action="@{/management/tambah-film}" th:object="${film}" method="post">
                 <div class="mt-3">
 
                 <label class="form-label" for="name">Film Name</label>
@@ -26,9 +26,21 @@
                 <label class="form-label" for="isPlaying">Status</label>
                 <input class="form-control" type="text" th:field="*{isPlaying}" id="isPlaying" placeholder="Please input with UPPERCASE">
                 </div>
+
+                <div class="input-group mt-4 mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Images</label>
+                    <select class="form-select" id="inputGroupSelect01" th:field="*{attachment.id}" aria-describedby="imagesHelp">
+                        <span th:each="file : ${attachment}">
+                            <option th:value="${file.id}"><span th:text="${file.fileName}"></span></option>
+                        </span>
+                    </select>
+                    <div id="imagesHelp" class="form-text">Didn't find the image for your film? <span><a th:href="@{/management/add-images}">Add New Image Here</a></span></div>
+                </div>
+
                 <!--    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
                 <button type="submit" class="btn btn-primary mt-4">Add film</button>
             </form>
+
         </div>
     </div>
 
