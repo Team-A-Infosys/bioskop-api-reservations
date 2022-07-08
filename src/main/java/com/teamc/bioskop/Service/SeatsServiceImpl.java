@@ -5,6 +5,9 @@ import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Model.StatusSeats;
 import com.teamc.bioskop.Repository.SeatsRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -82,5 +85,12 @@ public class SeatsServiceImpl implements SeatsService {
         List<Seats> optionStudio = seatRepository.findByStudioName(studioName);
 
         return optionStudio;
+    }
+
+    @Override
+    public Page<Seats> findPaginated(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+
+        return this.seatRepository.findAll(pageable);
     }
 }
