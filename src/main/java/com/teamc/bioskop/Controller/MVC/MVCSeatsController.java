@@ -1,8 +1,6 @@
 package com.teamc.bioskop.Controller.MVC;
 
-import com.teamc.bioskop.Model.Booking;
-import com.teamc.bioskop.Model.Films;
-import com.teamc.bioskop.Model.Seats;
+import com.teamc.bioskop.Model.*;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -78,5 +76,28 @@ public class MVCSeatsController {
         return "redirect:/getseats";
     }
 
+    /*
+    Filter Seats Data By Status - Management Page
+     */
+    @GetMapping("/seats-status")
+    public String showSeatsByStudio(@RequestParam(value = "isAvailable", required = false) StatusSeats statusSeats, Model model){
+        return paginatedSeatsbyStatus(1, model, statusSeats);
+    }
+
+    @GetMapping("/seats-status/{seatStatus}")
+    public String paginatedSeatsbyStatus(@PathVariable(value = "seatStatus") int pageNo, Model model, @RequestParam(value = "isAvailable", required = false) StatusSeats statusSeats){
+
+        int pageSize = 10;
+
+        Page<Seats> seatsPage = this.seatService.findPaginatedByStatus(statusSeats, pageNo, pageSize);
+        List<Seats> seatList = seatsPage.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", seatsPage.getTotalPages());
+        model.addAttribute("totalItems", seatsPage.getTotalElements());
+        model.addAttribute("seats", seatList);
+
+        return "seats";
+    }
 
 }

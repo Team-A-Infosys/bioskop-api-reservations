@@ -50,7 +50,8 @@
     ======================================================== -->
 </head>
 <body>
-    <section id="hero-animated" class="hero-animated d-flex align-items-center">
+    <div class="container-sm">
+        <section id="hero-animated" class="hero-animated d-flex align-items-center">
         <div class="container-fluid">
             <div th:switch="${seats}">
                 <h2 th:case="null">No seats yet!</h2>
@@ -58,28 +59,29 @@
                     <h2>Kursi Bioskop</h2>
                     <table class="table">
                         <div class="container mt-4">
-<!--                            <div class="row justify-content-between">-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <a class="btn btn-primary btn-sm" th:href="@{/add-seats}">Add Film</a>-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <form action="#" method="get" th:action="@{/films-status}">-->
-<!--                                        <div class="input-group mb-3">-->
-<!--                                            <select class="form-select" id="inputGroupSelect04" name="isPlaying">-->
-<!--                                                <option value="">Choose</option>-->
-<!--                                                <option value="PLAYING">Playing</option>-->
-<!--                                                <option value="NOT_PLAYING">Not Playing</option>-->
-<!--                                            </select>-->
-<!--                                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i class="bi bi-search"></i></button>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="row justify-content-between">
+                                <div class="col-sm-4">
+                                    <a class="btn btn-primary btn-sm" th:href="@{/management}">Back</a>
+                                    <a class="btn btn-success btn-sm" th:href="@{/add-seats}">Add New Seat</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <form action="#" method="get" th:action="@{/seats-status}">
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect04" name="isAvailable">
+                                                <option value="">Show By Status</option>
+                                                <option value="AVAILABLE">Available</option>
+                                                <option value="NOT_AVAILABLE">Not Available</option>
+                                            </select>
+                                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i class="bi bi-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <thead>
                             <tr>
                                 <th>No Kursi</th>
                                 <th>Studio</th>
-                                <th>Available</th>
+                                <th>Status</th>
                                 <td>Edit</td>
                                 <td>Delete</td>
                             </tr>
@@ -154,6 +156,7 @@
             </div>
         </div>
     </section>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    </div>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 </html>
