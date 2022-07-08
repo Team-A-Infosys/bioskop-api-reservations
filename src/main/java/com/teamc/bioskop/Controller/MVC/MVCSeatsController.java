@@ -5,9 +5,12 @@ import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.Seats;
 import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -19,7 +22,20 @@ public class MVCSeatsController {
 
     @GetMapping("/getseats")
     public String showSeats(Model model){
-        model.addAttribute("seats", seatService.findAllseats());
+        return paginatedSeats(1, model);
+    }
+
+    @GetMapping("/getseats/{page}")
+    public String paginatedSeats(@PathVariable(value="page") int pageNumber, Model model){
+        int pageSize = 10;
+        Page<Seats> seatsPage = this.seatService.findPaginated(pageNumber, pageSize);
+        List<Seats> seatList = seatsPage.getContent();
+
+        model.addAttribute("currentPage",pageNumber);
+        model.addAttribute("totalPages",seatsPage.getTotalPages());
+        model.addAttribute("totalItems",seatsPage.getTotalElements());
+        model.addAttribute("seats",seatList);
+
         return "seats";
     }
 
@@ -61,4 +77,6 @@ public class MVCSeatsController {
         seatService.deleteseat(id);
         return "redirect:/getseats";
     }
+
+
 }
