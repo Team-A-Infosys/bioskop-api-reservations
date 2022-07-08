@@ -9,6 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<button type="submit" class="btn btn-info"><a th:href="@{/}">back</a></button>
 <div class="container">
     <div class="row">
         <div class="col-8 mx-auto">
@@ -26,6 +27,7 @@
                             <th>tanggaltayang</th>
                             <th>Edit</th>
                             <th>Delete</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -37,13 +39,66 @@
                             <td th:text="${booking.schedule.dateShow}"></td>
                             <td><a th:href="@{/update-bookings/{id}(id=${booking.bookingId})}"><button type="button" class="btn btn-primary">Edit</button></a></td>
                             <td>
-                                <form th:method="delete" th:action="@{/deleted/bookings{id}(id=${booking.bookingId})}">
+                                <form th:method="get" th:action="@{/deleted/bookings{id}(id=${booking.bookingId})}">
                                     <button type="submit" class="btn btn-danger">delete</button>
                                 </form>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                    <div th:if="${totalPages <= 10}">
+                        <span th:if="${page!=null or #httpServletRequest.requestURI == '/bookings'}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        Total Rows: [[${totalItems}]]
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/bookings-' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/bookings-' + ${i}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                                </span>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/bookings-' + ${currentPage + 1}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/bookings-' + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+                        <!--                        <span th:if="${#request.getParameter('isPlaying') != null}">-->
+                        <!--                            <div class="container">-->
+                        <!--                                <div class="row justify-content-center">-->
+                        <!--                                    <div class="col-lg-8">-->
+                        <!--                                        Total Rows: [[${totalItems}]]-->
+                        <!--                                     </div>-->
+                        <!--                                    <div class="col-lg-4">-->
+                        <!--                                        <nav aria-label="Page navigation example">-->
+                        <!--                                            <ul class="pagination">-->
+                        <!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${currentPage - 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage != 1}">Previous</a></li>-->
+                        <!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>-->
+                        <!--                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+                        <!--                                                    <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${i}(isPlaying=${param.isPlaying})}"th:if="${currentPage != i}">[[${i}]]</a></li>-->
+                        <!--                                                    <li class="page-item active"><span class="page-link" th:unless="${currentPage != i}">[[${i}]]</span></li>-->
+                        <!--                                                </span>-->
+                        <!--                                                <li class="page-item"> <a class="page-link" th:href="@{'/management/films-status/' + ${currentPage + 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage < totalPages}">Next</a></li>-->
+                        <!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>-->
+                        <!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${totalPages}(isPlaying=${param.isPlaying})}" th:if="${currentPage < totalPages}">Last</a></li>-->
+                        <!--                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>-->
+                        <!--                                            </ul>-->
+                        <!--                                        </nav>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </span>-->
+                    </div>
 
                 </div>
                 <!--    <p><a href="/signup">Add a new user</a></p>-->

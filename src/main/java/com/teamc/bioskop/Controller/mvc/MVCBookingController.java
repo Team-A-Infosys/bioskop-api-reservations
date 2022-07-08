@@ -8,6 +8,7 @@ import com.teamc.bioskop.Service.BookingService;
 import com.teamc.bioskop.Service.ScheduleService;
 import com.teamc.bioskop.Service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import javax.persistence.Id;
 import java.util.List;
@@ -32,12 +34,25 @@ public class MVCBookingController {
     private final ScheduleService scheduleService;
 
 
-
     @GetMapping("/bookings")
-    public String bookingList(Model model) {
-        model.addAttribute("bookings", bookingService.getAll());
+    public String showBookings(Model model){
+        return paginatedBookings(1, model);
+    }
+
+    @GetMapping("/bookings-{page}")
+    public String paginatedBookings(@PathVariable(value="page") int pageNumber, Model model){
+        int pageSize = 5;
+        Page<Booking> bookingPage = this.bookingService.findPaginated(pageNumber,pageSize);
+        List<Booking> bookingList = bookingPage.getContent();
+
+        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("totalPages",bookingPage.getTotalPages());
+        model.addAttribute("totalItems", bookingPage.getTotalElements());
+        model.addAttribute("bookings",bookingList);
+
         return "bookings";
     }
+
 
     @GetMapping("/bookings/{id}")
     public String showBookings(@PathVariable("id") Long id, Model model) {
@@ -95,7 +110,7 @@ public class MVCBookingController {
         return "success-delete";
     }
 
-    @DeleteMapping("/deleted/bookings{id}")
+    @GetMapping("/deleted/bookings{id}")
     public String deleteById(Model model, @PathVariable("id") Long id) throws ResourceNotFoundException {
         bookingService.deleteSBookingById(id);
         return "redirect:/delete-bookings/success";

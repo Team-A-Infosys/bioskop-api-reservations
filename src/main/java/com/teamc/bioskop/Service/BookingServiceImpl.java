@@ -5,6 +5,9 @@ import com.teamc.bioskop.Model.Booking;
 import com.teamc.bioskop.Repository.BookingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +71,13 @@ public class BookingServiceImpl implements BookingService {
             throw new ResourceNotFoundException("Booking not exist with Filmname " + name);
         }
         return this.bookingRepository.getBookingByFilmName(name);
+    }
+
+    @Override
+    public Page<Booking> findPaginated(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+
+        return this.bookingRepository.findAll(pageable);
     }
 
 }
