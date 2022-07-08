@@ -1,14 +1,17 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Service.ScheduleService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Controller
@@ -17,10 +20,22 @@ public class MVCSchedulesController {
 
     @GetMapping("/schedule/AllSchedule")
     public String showSchedulesList(Model model) {
-        model.addAttribute("schedules", scheduleService.getAll());
-        return "Schedules";
+        return paginatedSchedule(1, model);
     }
 
+    @GetMapping("/schedule/AllSchedule/{page}")
+    public String paginatedSchedule(@PathVariable(value="page") int pageNumber, Model model) {
+        int pageSize = 5;
+        Page<Schedule> schedulePage = this.scheduleService.findPaginated(pageNumber, pageSize);
+        List<Schedule> scheduleList = schedulePage.getContent();
+
+        model.addAttribute("currentPage", pageNumber);
+        model.addAttribute("totalPages", schedulePage.getTotalPages());
+        model.addAttribute("totalItems", schedulePage.getTotalElements());
+        model.addAttribute("Schedules",scheduleList);
+
+        return "Schedules";
+    }
     @GetMapping("/edit/schedule/{id}")
     public String showSchedule(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("schedule", scheduleService.getScheduleById(id));

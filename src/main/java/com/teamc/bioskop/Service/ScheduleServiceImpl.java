@@ -4,6 +4,9 @@ import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -82,4 +85,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         return this.scheduleRepository.getScheduleFilmsNameLike(name);
     }
 
+    @Override
+    public Page<Schedule> findPaginated(int pageNumber, int pageSize) {
+        Pageable pageable  = PageRequest.of(pageNumber-1, pageSize);
+
+        return this.scheduleRepository.findAll(pageable);
+    }
 }
