@@ -8,6 +8,9 @@ import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.User;
 import com.teamc.bioskop.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -95,5 +98,12 @@ public class UserServiceImplements implements UserService {
             throw new ResourceNotFoundException(" Seats not Exist with id :" + id);
         }
         return userRepository.findById(id);
+    }
+
+    @Override
+    public Page<User> findPaginated(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber-1, pageSize);
+
+        return this.userRepository.findAll(pageable);
     }
 }

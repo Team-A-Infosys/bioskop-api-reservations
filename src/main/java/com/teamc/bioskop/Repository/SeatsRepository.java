@@ -18,6 +18,6 @@ public interface SeatsRepository extends JpaRepository<Seats, Long> {
 //    @Query(value = "select * from seats s where studio_name =?1", nativeQuery=true)
     public List<Seats> findByStudioName(String studioName);
 
-    Page<Seats> findByIsAvailable(StatusSeats isAvailable, Pageable pageable);
+    Page<Seats> findSeatsByIsAvailable(StatusSeats isAvailable, Pageable pageable);
 
 }

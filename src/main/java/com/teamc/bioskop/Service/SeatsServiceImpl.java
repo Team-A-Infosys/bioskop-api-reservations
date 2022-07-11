@@ -97,6 +97,6 @@ public class SeatsServiceImpl implements SeatsService {
     @Override
     public Page<Seats> findPaginatedByStatus(StatusSeats isAvailable, int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-        return this.seatRepository.findByIsAvailable(isAvailable, pageable);
+        return this.seatRepository.findSeatsByIsAvailable(isAvailable, pageable);
     }
 }

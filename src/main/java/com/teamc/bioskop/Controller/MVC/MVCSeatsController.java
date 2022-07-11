@@ -66,7 +66,7 @@ public class MVCSeatsController {
                              @ModelAttribute("seats") Seats seats) {
         seats.setSeatId(id);
         this.seatService.updateseat(seats, id);
-        return "success-updated-seats";
+        return "redirect:/getseats";
     }
 
     @GetMapping("/delete/seat/{id}")
@@ -84,15 +84,15 @@ public class MVCSeatsController {
         return paginatedSeatsbyStatus(1, model, statusSeats);
     }
 
-    @GetMapping("/seats-status/{seatStatus}")
-    public String paginatedSeatsbyStatus(@PathVariable(value = "seatStatus") int pageNo, Model model, @RequestParam(value = "isAvailable", required = false) StatusSeats statusSeats){
+    @GetMapping("/seats-status/{pageStatus}")
+    public String paginatedSeatsbyStatus(@PathVariable(value = "pageStatus") int pageNumber, Model model, @RequestParam(value = "isAvailable", required = false) StatusSeats statusSeats){
 
         int pageSize = 10;
 
-        Page<Seats> seatsPage = this.seatService.findPaginatedByStatus(statusSeats, pageNo, pageSize);
+        Page<Seats> seatsPage = this.seatService.findPaginatedByStatus(statusSeats, pageNumber, pageSize);
         List<Seats> seatList = seatsPage.getContent();
 
-        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", seatsPage.getTotalPages());
         model.addAttribute("totalItems", seatsPage.getTotalElements());
         model.addAttribute("seats", seatList);
