@@ -29,8 +29,10 @@ public class MVCMainController {
         model.addAttribute("seatsB", seatService.getSeatsByStudioName(studioB));
         model.addAttribute("seatsC", seatService.getSeatsByStudioName(studioC));
         model.addAttribute("seatsD", seatService.getSeatsByStudioName(studioD));
+
         Films films = new Films();
         Booking bookings = new Booking();
+
         model.addAttribute("film", films);
         model.addAttribute("bookings", bookings);
         model.addAttribute("seats", seatService.findAllseats());

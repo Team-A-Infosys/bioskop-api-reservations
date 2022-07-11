@@ -194,10 +194,10 @@
 
     <!-- Modal Seat Studio A -->
     <div class="modal fade bd-example-modal-lg" id="modalSeat" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Studio A</h5>
+            <h2 class="modal-title">Kursi Studio A</h2>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -206,15 +206,12 @@
             <div th:switch="${seatsA}">
               <h2 th:case="null">No seats yet!</h2>
               <div th:case="*">
-                <h2>Kursi Bioskop</h2>
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
                   <tr>
                     <th>Studio</th>
                     <th>No Kursi</th>
                     <th>Available</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -225,32 +222,6 @@
                   </tr>
                   </tbody>
                 </table>
-                <!-- Film Pagination -->
-                <div th:if="${totalPages <= 10}">
-                  <span th:if="${page!=null or #httpServletRequest.requestURI == '/'}">
-                      <div class="container mt-3">
-                          <div class="row justify-content-center">
-                              <div class="col-lg-4">
-                                  <nav aria-label="Page navigation example">
-                                      <ul class="pagination">
-                                          <li class="page-item"><a class="page-link text-decoration-none" th:href="@{'/films-page-' + ${currentPage - 1} + '/seats-page-' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
-                                          <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
-                                          <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                              <li class="page-item"><a class="page-link" th:href="@{'/films-page-' + ${i} + '/seats-page-' + ${i}}" th:if="${currentPage != i}">[[${i}]]</a></li>
-                                              <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
-                                          </span>
-                                          <li class="page-item"> <a class="page-link" th:href="@{'/films-page-' + ${currentPage + 1} + '/seats-page-' + ${currentPage + 1}}"th:if="${currentPage < totalPages}">Next</a></li>
-                                          <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
-                                          <li class="page-item"><a class="page-link" th:href="@{'/films-page-' + ${totalPages} + '/seats-page-' + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a></li>
-                                          <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
-                                      </ul>
-                                  </nav>
-                              </div>
-                          </div>
-                      </div>
-                  </span>
-                </div>
-                <!-- End Film Pagination -->
               </div>
             </div>
           </div>
@@ -263,10 +234,10 @@
 
     <!-- Modal Seat Studio B-->
     <div class="modal fade bd-example-modal-lg" id="modalSeatB" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Studio B</h5>
+            <h2 class="modal-title">Kursi Studio B</h2>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -275,8 +246,7 @@
             <div th:switch="${seatsB}">
               <h2 th:case="null">No seats yet!</h2>
               <div th:case="*">
-                <h2>Kursi Bioskop</h2>
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
                   <tr>
                     <th>Studio</th>
@@ -304,10 +274,10 @@
 
     <!-- Modal Seat Studio C-->
     <div class="modal fade bd-example-modal-lg" id="modalSeatC" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Studio C</h5>
+            <h2 class="modal-title">Kursi Studio C</h2>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -316,8 +286,7 @@
             <div th:switch="${seatsC}">
               <h2 th:case="null">No seats yet!</h2>
               <div th:case="*">
-                <h2>Kursi Bioskop</h2>
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
                   <tr>
                     <th>Studio</th>
@@ -345,10 +314,10 @@
 
     <!-- Modal Seat Studio B-->
     <div class="modal fade bd-example-modal-lg" id="modalSeatD" tabindex="-1" role="dialog" aria-labelledby="modalSeatLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Studio D</h5>
+            <h2 class="modal-title">Kursi Studio D</h2>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -357,8 +326,7 @@
             <div th:switch="${seatsD}">
               <h2 th:case="null">No seats yet!</h2>
               <div th:case="*">
-                <h2>Kursi Bioskop</h2>
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
                   <tr>
                     <th>Studio</th>

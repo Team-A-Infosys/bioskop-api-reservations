@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Show All Seats Data</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-          crossorigin="anonymous">
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,7 +23,6 @@
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -48,38 +44,46 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 </head>
 <body>
-    <section id="hero-animated" class="hero-animated d-flex align-items-center">
-        <div class="container-fluid">
+
+    <div class="container-sm">
+        <section id="hero-animated" class="hero-animated d-flex align-items-center">
+            <div class="container-fluid">
+
             <div th:switch="${seats}">
+
                 <h2 th:case="null">No seats yet!</h2>
                 <div th:case="*">
                     <h2>Kursi Bioskop</h2>
                     <table class="table">
                         <div class="container mt-4">
-<!--                            <div class="row justify-content-between">-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <a class="btn btn-primary btn-sm" th:href="@{/add-seats}">Add Film</a>-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <form action="#" method="get" th:action="@{/films-status}">-->
-<!--                                        <div class="input-group mb-3">-->
-<!--                                            <select class="form-select" id="inputGroupSelect04" name="isPlaying">-->
-<!--                                                <option value="">Choose</option>-->
-<!--                                                <option value="PLAYING">Playing</option>-->
-<!--                                                <option value="NOT_PLAYING">Not Playing</option>-->
-<!--                                            </select>-->
-<!--                                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i class="bi bi-search"></i></button>-->
-<!--                                        </div>-->
-<!--                                    </form>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="row justify-content-between">
+                                <div class="col-sm-4">
+                                    <a class="btn btn-primary btn-sm" th:href="@{/management}">Back</a>
+                                    <a class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalNewSeat">Add New Seat</a>
+                                </div>
+                                <!-- Filter Seat By Status isAvailable -->
+                                <div class="col-sm-4">
+                                    <form action="#" method="get" th:action="@{/seats-status}">
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect04" name="isAvailable">
+                                                <option disabled selected value>Show By Status</option>
+                                                <option value="AVAILABLE">Available</option>
+                                                <option value="NOT_AVAILABLE">Not Available</option>
+                                            </select>
+                                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i class="bi bi-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <thead>
                             <tr>
                                 <th>No Kursi</th>
                                 <th>Studio</th>
-                                <th>Available</th>
+                                <th>Status</th>
                                 <td>Edit</td>
                                 <td>Delete</td>
                             </tr>
@@ -96,6 +100,7 @@
                         </div>
                     </table>
 
+                    <!-- Pagination Section -->
                     <div th:if="${totalPages <= 10}">
                         <span th:if="${page!=null or #httpServletRequest.requestURI == '/getseats'}">
                             <div class="container">
@@ -123,37 +128,86 @@
                             </div>
                         </span>
 
-<!--                        <span th:if="${#request.getParameter('isPlaying') != null}">-->
-<!--                            <div class="container">-->
-<!--                                <div class="row justify-content-center">-->
-<!--                                    <div class="col-lg-8">-->
-<!--                                        Total Rows: [[${totalItems}]]-->
-<!--                                     </div>-->
-<!--                                    <div class="col-lg-4">-->
-<!--                                        <nav aria-label="Page navigation example">-->
-<!--                                            <ul class="pagination">-->
-<!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${currentPage - 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage != 1}">Previous</a></li>-->
-<!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>-->
-<!--                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
-<!--                                                    <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${i}(isPlaying=${param.isPlaying})}"th:if="${currentPage != i}">[[${i}]]</a></li>-->
-<!--                                                    <li class="page-item active"><span class="page-link" th:unless="${currentPage != i}">[[${i}]]</span></li>-->
-<!--                                                </span>-->
-<!--                                                <li class="page-item"> <a class="page-link" th:href="@{'/management/films-status/' + ${currentPage + 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage < totalPages}">Next</a></li>-->
-<!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>-->
-<!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${totalPages}(isPlaying=${param.isPlaying})}" th:if="${currentPage < totalPages}">Last</a></li>-->
-<!--                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>-->
-<!--                                            </ul>-->
-<!--                                        </nav>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </span>-->
+                        <span th:if="${#request.getParameter('isAvailable') != null}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        Total Rows: [[${totalItems}]]
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${currentPage - 1}(isAvailable=${param.isAvailable})}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${i}(isAvailable=${param.isAvailable})}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                                </span>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/seats-status/' + ${currentPage + 1}(isAvailable=${param.isAvailable})}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${totalPages}(isAvailable=${param.isAvailable})}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
                     </div>
                 </div>
-            <!--    <p><a href="/signup">Add a new user</a></p>-->
+
+            </div>
+
+        </div>
+        </section>
+    </div>
+
+    <!-- Modal Input Seat-->
+    <div class="modal fade" id="modalNewSeat" tabindex="-1" aria-labelledby="modalNewSeatLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNewSeatLabel">Input Kursi Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{/added-seats}" th:object="${seats}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Studio</label>
+                            <select class="form-select" name="studioName" id="studioName" aria-label="Default select example">
+                                <option selected>Pilih Studio</option>
+                                <option value="Studio A">Studio A</option>
+                                <option value="Studio B">Studio B</option>
+                                <option value="Studio C">Studio C</option>
+                                <option value="Studio D">Studio D</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No Kursi</label>
+                            <input class="form-control" name="seatNumber" id="seatNumber" placeholder="Nomor Kursi">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Is Available</label>
+                            <select class="form-select" name="isAvailable" aria-label="Default select example">
+                                <option selected>Status Kursi</option>
+                                <option value="AVAILABLE">AVAILABLE</option>
+                                <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
