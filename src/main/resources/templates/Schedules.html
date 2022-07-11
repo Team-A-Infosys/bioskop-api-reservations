@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div th:switch="${schedules}">
+<div th:switch="${Schedules}">
     <h2 th:case="null">No Schedules yet!</h2>
     <div th:case="*">
         <h2>Movie Schedules</h2>
@@ -29,7 +29,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="schedule : ${schedules}">
+            <tr th:each="schedule : ${Schedules}">
                 <td th:text="${schedule.films.name}"></td>
                 <td th:text="${schedule.dateShow}"></td>
                 <td th:text="${schedule.showStart}"></td>
@@ -43,6 +43,59 @@
             </tr>
             </tbody>
     </table>
+        <div th:if="${totalPages <= 5}">
+                        <span th:if="${page!=null or #httpServletRequest.requestURI == '/schedule/AllSchedule'}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        Total Rows: [[${totalItems}]]
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/schedule/AllSchedule/' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/schedule/AllSchedule/' + ${i}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                                </span>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/schedule/AllSchedule/' + ${currentPage + 1}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/schedule/AllSchedule/' + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+            <!--                        <span th:if="${#request.getParameter('isPlaying') != null}">-->
+            <!--                            <div class="container">-->
+            <!--                                <div class="row justify-content-center">-->
+            <!--                                    <div class="col-lg-8">-->
+            <!--                                        Total Rows: [[${totalItems}]]-->
+            <!--                                     </div>-->
+            <!--                                    <div class="col-lg-4">-->
+            <!--                                        <nav aria-label="Page navigation example">-->
+            <!--                                            <ul class="pagination">-->
+            <!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${currentPage - 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage != 1}">Previous</a></li>-->
+            <!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>-->
+            <!--                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+            <!--                                                    <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${i}(isPlaying=${param.isPlaying})}"th:if="${currentPage != i}">[[${i}]]</a></li>-->
+            <!--                                                    <li class="page-item active"><span class="page-link" th:unless="${currentPage != i}">[[${i}]]</span></li>-->
+            <!--                                                </span>-->
+            <!--                                                <li class="page-item"> <a class="page-link" th:href="@{'/management/films-status/' + ${currentPage + 1}(isPlaying=${param.isPlaying})}"th:if="${currentPage < totalPages}">Next</a></li>-->
+            <!--                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>-->
+            <!--                                                <li class="page-item"><a class="page-link" th:href="@{'/management/films-status/' + ${totalPages}(isPlaying=${param.isPlaying})}" th:if="${currentPage < totalPages}">Last</a></li>-->
+            <!--                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>-->
+            <!--                                            </ul>-->
+            <!--                                        </nav>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </span>-->
+        </div>
 <!--    <p><a href="/signup">Add a new user</a></p>-->
         </div>
 </div>
