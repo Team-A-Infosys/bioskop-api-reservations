@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.persistence.Id;
@@ -89,7 +90,7 @@ public class MVCBookingController {
     public String editBooking(@PathVariable("id") Long id, @ModelAttribute Booking booking) {
         booking.setBookingId(id);
         bookingService.updateBooking(booking);
-        return "redirect:/update-bookings/success";
+       return "redirect:/bookings";
     }
 
     @GetMapping("/update-bookings/success")
@@ -99,10 +100,11 @@ public class MVCBookingController {
 
     @PostMapping("/updated-bookings/{id}")
     public String updateById(@PathVariable("id") Long id,
-                             @ModelAttribute("bookings") Booking bookings) {
+                             @ModelAttribute("bookings") Booking bookings, RedirectAttributes redirectAttributes) {
         bookings.setBookingId(id);
         this.bookingService.updateBooking(bookings);
-        return "success-updated-booking";
+        redirectAttributes.addFlashAttribute("success","success edit booking");
+        return "redirect:/bookings";
     }
 
     @GetMapping("/delete-bookings/success")
@@ -111,8 +113,9 @@ public class MVCBookingController {
     }
 
     @GetMapping("/deleted/bookings{id}")
-    public String deleteById(Model model, @PathVariable("id") Long id) throws ResourceNotFoundException {
+    public String deleteById(Model model, @PathVariable("id") Long id, RedirectAttributes redirectAttributes) throws ResourceNotFoundException {
         bookingService.deleteSBookingById(id);
-        return "redirect:/delete-bookings/success";
+        redirectAttributes.addFlashAttribute("deleted","success delete booking");
+        return "redirect:/bookings";
     }
 }
