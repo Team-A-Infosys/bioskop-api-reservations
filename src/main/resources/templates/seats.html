@@ -104,8 +104,8 @@
                             <thead>
                             <tr>
                                 <th>No Kursi</th>
-                                <th>Studio</th>
-                                <th>Status</th>
+                                <th><a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortAvailable=' + ${reverseSortAvailable}}">Studio</a></th>
+                                <th><a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortAvailable=' + ${reverseSortAvailable}}">Status</a></th>
                                 <td>Edit</td>
                                 <td>Delete</td>
                             </tr>
@@ -136,12 +136,12 @@
                                                 <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
                                                 <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
                                                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                                    <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}" th:if="${currentPage != i}">[[${i}]]</a></li>
                                                     <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
                                                 </span>
-                                                <li class="page-item"> <a class="page-link" th:href="@{'/getseats/' + ${currentPage + 1}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/getseats/' + ${currentPage + 1} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}"th:if="${currentPage < totalPages}">Next</a></li>
                                                 <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
-                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${totalPages} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}" th:if="${currentPage < totalPages}">Last</a></li>
                                                 <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
                                             </ul>
                                         </nav>

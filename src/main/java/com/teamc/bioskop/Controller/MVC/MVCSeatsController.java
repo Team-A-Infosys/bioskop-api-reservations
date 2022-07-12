@@ -21,18 +21,26 @@ public class MVCSeatsController {
 
     @GetMapping("/getseats")
     public String showSeats(Model model){
-        return paginatedSeats(1, model);
+        return paginatedSeats(1, "studioName", "asc", model);
     }
 
     @GetMapping("/getseats/{page}")
-    public String paginatedSeats(@PathVariable(value="page") int pageNumber, Model model){
+    public String paginatedSeats(@PathVariable(value="page") int pageNumber,
+            @RequestParam("sortStudio") String sortStudio,
+            @RequestParam("sortAvailable") String sortAvailable, Model model){
+
         int pageSize = 10;
-        Page<Seats> seatsPage = this.seatService.findPaginated(pageNumber, pageSize);
+        Page<Seats> seatsPage = this.seatService.findPaginated(pageNumber, pageSize, sortStudio, sortAvailable);
         List<Seats> seatList = seatsPage.getContent();
 
         model.addAttribute("currentPage",pageNumber);
         model.addAttribute("totalPages",seatsPage.getTotalPages());
         model.addAttribute("totalItems",seatsPage.getTotalElements());
+
+        model.addAttribute("sortStudio", sortStudio);
+        model.addAttribute("sortAvailable", sortAvailable);
+        model.addAttribute("reverseSortAvailable", sortAvailable.equals("asc") ? "desc" : "asc");
+
         model.addAttribute("seats",seatList);
 
         return "seats";
