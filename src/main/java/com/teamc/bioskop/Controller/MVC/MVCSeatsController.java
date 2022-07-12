@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -46,9 +47,10 @@ public class MVCSeatsController {
     }
 
     @PostMapping("/added-seats")
-    public String newSeats(@ModelAttribute("seats") Seats seats) {
+    public String newSeats(@ModelAttribute("seats") Seats seats, RedirectAttributes redirAttrs) {
         this.seatService.createseat(seats);
-        return "dashboard";
+        redirAttrs.addFlashAttribute("success", " Your data is saved.");
+        return "redirect:/getseats";
     }
 
     /*
@@ -63,16 +65,18 @@ public class MVCSeatsController {
 
     @PostMapping("/update/seat/{id}")
     public String updateById(@PathVariable("id") Long id,
-                             @ModelAttribute("seats") Seats seats) {
+                             @ModelAttribute("seats") Seats seats, RedirectAttributes redirAttrs) {
         seats.setSeatId(id);
         this.seatService.updateseat(seats, id);
+        redirAttrs.addFlashAttribute("updated", " Keep Your Data Relevant, Right?.");
         return "redirect:/getseats";
     }
 
     @GetMapping("/delete/seat/{id}")
-    public String deleteSeat(@PathVariable("id") long id, Model model) {
+    public String deleteSeat(@PathVariable("id") long id, Model model, RedirectAttributes redirAttrs) {
         Seats seats = seatService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         seatService.deleteseat(id);
+        redirAttrs.addFlashAttribute("deleted", " Free Space Created.");
         return "redirect:/getseats";
     }
 
