@@ -10,6 +10,19 @@
 
 </head>
 <body>
+<button type="submit" class="btn btn-info"><a th:href="@{/}">back</a></button>
+<a class="btn btn-outline-info" th:href="@{/cetak-schedule}">Cetak Report</a>
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
+        <strong>Horee!</strong> <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${deleted}">
+        <strong>Data deleted!!</strong> <span th:text="${deleted}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row">
+        <div class="col-8 mx-auto">
 <div th:switch="${Schedules}">
     <h2 th:case="null">No Schedules yet!</h2>
     <div th:case="*">
@@ -38,7 +51,7 @@
                 <td th:text="${schedule.seats.seatNumber}"></td>
 
                 <td><a th:href="@{/update/schedule/{id}(id=${schedule.scheduleId})}"><button type="submit">Edit</button></a></td>
-                <td><a th:href="@{/delete/schedule/{id}(id=${schedule.scheduleId})}"><button type="submit">Delete</button></a></td>
+                <td><a th:href="@{/deleted/schedule/{id}(id=${schedule.scheduleId})}"><button type="submit">Delete</button></a></td>
                 <
             </tr>
             </tbody>
@@ -98,6 +111,10 @@
         </div>
 <!--    <p><a href="/signup">Add a new user</a></p>-->
         </div>
+    </div>
+        </div>
+    </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

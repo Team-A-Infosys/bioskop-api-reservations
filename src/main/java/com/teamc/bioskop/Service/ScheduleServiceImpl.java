@@ -4,11 +4,20 @@ import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Schedule;
 import com.teamc.bioskop.Repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +26,7 @@ import java.util.Optional;
 public class ScheduleServiceImpl implements ScheduleService {
 
     private ScheduleRepository scheduleRepository;
+    private DataSource dataSource;
 
     //Get All
     public List<Schedule> getAll() {
@@ -91,4 +101,21 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         return this.scheduleRepository.findAll(pageable);
     }
+
+    private Connection getConnection(){
+        try {
+            return dataSource.getConnection();
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+        public JasperPrint generateJasperPrint() throws Exception{
+            InputStream scheduleReport = new ClassPathResource("reports/Schedule-list.jasper").getInputStream();
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(scheduleReport);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource.getConnection());
+            return jasperPrint;
+
+        }
 }

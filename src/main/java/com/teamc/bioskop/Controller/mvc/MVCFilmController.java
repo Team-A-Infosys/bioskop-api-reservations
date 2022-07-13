@@ -1,26 +1,17 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
-import com.teamc.bioskop.Model.Attachment;
-import com.teamc.bioskop.Model.Booking;
 import com.teamc.bioskop.Model.Films;
 import com.teamc.bioskop.Model.StatusFilms;
-import com.teamc.bioskop.Response.AttachmentResponse;
 import com.teamc.bioskop.Service.AttachmentService;
 import com.teamc.bioskop.Service.FilmsService;
-import com.teamc.bioskop.Service.ReportPDFService;
-import com.teamc.bioskop.Service.SeatsService;
 import lombok.AllArgsConstructor;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller

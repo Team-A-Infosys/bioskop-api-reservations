@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
