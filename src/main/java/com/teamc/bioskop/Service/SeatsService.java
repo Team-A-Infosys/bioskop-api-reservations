@@ -23,7 +23,7 @@ public interface SeatsService {
 
     List<Seats> getSeatAvailable(StatusSeats isAvailable);
     List<Seats> getSeatsByStudioName(String studioName);
-    Page<Seats> findPaginated(int pageNumber, int pageSize, String sortStudio, String sortAvailable );
+    Page<Seats> findPaginated(int pageNumber, int pageSize, String sortStudio, String sortDir);
     Page<Seats> findPaginatedByStatus(StatusSeats isAvailable, int pageNo, int pageSize);
 
 }

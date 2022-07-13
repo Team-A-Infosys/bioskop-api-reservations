@@ -2,35 +2,39 @@ package com.teamc.bioskop.Controller.MVC;
 
 import com.teamc.bioskop.Model.*;
 import com.teamc.bioskop.Service.SeatsService;
+import com.teamc.bioskop.Service.SeatsServiceImpl;
 import lombok.AllArgsConstructor;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 @AllArgsConstructor
 public class MVCSeatsController {
 
-    private final SeatsService seatService;
+    private final SeatsServiceImpl seatService;
 
-
+    private HttpServletResponse httpServletResponse;
 
     @GetMapping("/getseats")
     public String showSeats(Model model){
-        return paginatedSeats(1, "studioName", "asc", model);
+        return paginatedSeats(1, "studioName","asc", model);
     }
 
     @GetMapping("/getseats/{page}")
     public String paginatedSeats(@PathVariable(value="page") int pageNumber,
             @RequestParam("sortStudio") String sortStudio,
-            @RequestParam("sortAvailable") String sortAvailable, Model model){
+            @RequestParam("sortDir") String sortDir,Model model){
 
         int pageSize = 10;
-        Page<Seats> seatsPage = this.seatService.findPaginated(pageNumber, pageSize, sortStudio, sortAvailable);
+        Page<Seats> seatsPage = this.seatService.findPaginated(pageNumber, pageSize, sortStudio, sortDir);
         List<Seats> seatList = seatsPage.getContent();
 
         model.addAttribute("currentPage",pageNumber);
@@ -38,8 +42,8 @@ public class MVCSeatsController {
         model.addAttribute("totalItems",seatsPage.getTotalElements());
 
         model.addAttribute("sortStudio", sortStudio);
-        model.addAttribute("sortAvailable", sortAvailable);
-        model.addAttribute("reverseSortAvailable", sortAvailable.equals("asc") ? "desc" : "asc");
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
         model.addAttribute("seats",seatList);
 
@@ -110,6 +114,17 @@ public class MVCSeatsController {
         model.addAttribute("seats", seatList);
 
         return "seats";
+    }
+
+    @GetMapping("/print-seatsreport")
+    public void printReportSeat() throws Exception{
+        httpServletResponse.setContentType("application/pdf");
+        httpServletResponse.setHeader("Content-Disposition","attachment; filename=\"Seats Report.pdf\"");
+
+        JasperPrint jasperPrint = this.seatService.generateJReport();
+        JasperExportManager.exportReportToPdfStream(jasperPrint,httpServletResponse.getOutputStream());
+        httpServletResponse.getOutputStream().flush();
+        httpServletResponse.getOutputStream().close();
     }
 
 }

@@ -62,6 +62,9 @@
                     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                 </symbol>
             </svg>
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">-->
+<!--                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>-->
+<!--            </svg>-->
             <div class="container-fluid">
                 <div class="alert alert-success d-flex align-items-center" role="alert" th:if="${success}">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
@@ -84,8 +87,9 @@
                         <div class="container mt-4">
                             <div class="row justify-content-between">
                                 <div class="col-sm-4">
-                                    <a class="btn btn-primary btn-sm" th:href="@{/management}">Back</a>
-                                    <a class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalNewSeat">Add New Seat</a>
+                                    <a class="btn btn-primary" th:href="@{/management}">Back</a>
+                                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNewSeat">Add New Seat</a>
+                                    <a th:href="@{/print-seatsreport}" class="btn btn-primary">Print Report</a>
                                 </div>
                                 <!-- Filter Seat By Status isAvailable -->
                                 <div class="col-sm-4">
@@ -104,8 +108,9 @@
                             <thead>
                             <tr>
                                 <th>No Kursi</th>
-                                <th><a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortAvailable=' + ${reverseSortAvailable}}">Studio</a></th>
-                                <th><a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortAvailable=' + ${reverseSortAvailable}}">Status</a></th>
+<!--                                <th>Studio<a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortDir=' + ${reverseSortDir}}"><i class="bi bi-arrow-down-up"></i></a></th>-->
+                                <th>Studio</th>
+                                <th>Status</th>
                                 <td>Edit</td>
                                 <td>Delete</td>
                             </tr>
@@ -136,12 +141,12 @@
                                                 <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
                                                 <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
                                                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-                                                    <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}" th:if="${currentPage != i}">[[${i}]]</a></li>
                                                     <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
                                                 </span>
-                                                <li class="page-item"> <a class="page-link" th:href="@{'/getseats/' + ${currentPage + 1} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/getseats/' + ${currentPage + 1} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}"th:if="${currentPage < totalPages}">Next</a></li>
                                                 <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
-                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${totalPages} + '?sortStudio=' + ${sortStudio} + '&sortAvailable=' + ${sortAvailable}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${totalPages} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}" th:if="${currentPage < totalPages}">Last</a></li>
                                                 <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
                                             </ul>
                                         </nav>
