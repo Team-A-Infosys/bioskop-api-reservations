@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,8 +54,9 @@ public class MVCUserController {
     }
 
     @PostMapping("/added-user")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String newUser(@ModelAttribute("user") User user, RedirectAttributes redirAttrs) {
         this.userService.createUser(user);
+        redirAttrs.addFlashAttribute("success", " Your data is saved.");
         return "redirect:/getusers";
     }
 
@@ -70,9 +72,10 @@ public class MVCUserController {
 
     @PostMapping("/update/user/{id}")
     public String updateUserById(@PathVariable("id") Long id,
-                                 @ModelAttribute("user") User user) {
+                                 @ModelAttribute("user") User user, RedirectAttributes redirAttrs) {
         user.setUserId(id);
         this.userService.updateUser(user, id);
+        redirAttrs.addFlashAttribute("updated", " Keep Your Data Relevant, Right?.");
         return "redirect:/getusers";
     }
 
@@ -80,9 +83,10 @@ public class MVCUserController {
      * Delete User
      */
     @GetMapping("/delete/user/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    public String deleteUser(@PathVariable("id") long id, Model model, RedirectAttributes redirAttrs) {
         User user = userService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         userService.deleteUserById(id);
+        redirAttrs.addFlashAttribute("deleted", " Free Space Created.");
         return "redirect:/getusers";
     }
 }
