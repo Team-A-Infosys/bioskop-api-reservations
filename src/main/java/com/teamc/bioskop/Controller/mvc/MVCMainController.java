@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import com.teamc.bioskop.Model.Booking;
 import com.teamc.bioskop.Model.Films;

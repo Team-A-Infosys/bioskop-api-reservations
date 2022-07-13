@@ -1,22 +1,26 @@
 package com.teamc.bioskop.Controller.mvc;
 
+import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Schedule;
-import com.teamc.bioskop.Service.ScheduleService;
+import com.teamc.bioskop.Service.ScheduleServiceImpl;
 import lombok.AllArgsConstructor;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @AllArgsConstructor
 @Controller
 public class MVCSchedulesController {
-    private ScheduleService scheduleService;
+    private ScheduleServiceImpl scheduleService;
+
+    private HttpServletResponse response;
 
     @GetMapping("/schedule/AllSchedule")
     public String showSchedulesList(Model model) {
@@ -62,17 +66,52 @@ public class MVCSchedulesController {
         return "update-schedule";
     }
 
-    @PostMapping("/updated/schedule/{id}")
-    public String updateById(@PathVariable("id") Integer id,
-                             @ModelAttribute("schedule") Schedule schedules) {
+//    @PostMapping("/updated/schedule/{id}")
+//    public String updateById(@PathVariable("id") Integer id,
+//                             @ModelAttribute("schedule") Schedule schedules) {
+//        schedules.setScheduleId(id);
+//        scheduleService.createSchedule(schedules);
+//        return "redirect:/schedule/AllSchedule";
+//    }
+
+//    @PutMapping("/updated/schedule/{id}")
+//    public String editSchedule(@PathVariable("id") Integer id, @ModelAttribute Schedule schedules) {
+//        schedules.setScheduleId(id);
+//        scheduleService.updateSchedule(schedules);
+//        return "redirect:/Schedules";
+//    }
+
+    @GetMapping("/update/schedule/success")
+    public String deleteSuccess() {
+        return "success-updated-schedule";
+    }
+
+    @PostMapping("updated/schedule/{id}")
+    public String updateById(@PathVariable("id") Integer id, @ModelAttribute("schedule") Schedule schedules, RedirectAttributes redirectAttributes){
         schedules.setScheduleId(id);
-        scheduleService.createSchedule(schedules);
+        redirectAttributes.addFlashAttribute("success","success edit schedule");
+        return "redirect:/schedule/AllSchedule";
+
+    }
+    @GetMapping("/deleted/schedule/{id}")
+    public String deleteScheduleById(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes)throws ResourceNotFoundException {
+        scheduleService.deleteScheduleById(id);
+        redirectAttributes.addFlashAttribute("deleted", "success delete schedule");
         return "redirect:/schedule/AllSchedule";
     }
 
-    @GetMapping("/delete/schedule/{id}")
-    public String deleteSchedule(@PathVariable("id") Integer id) {
-        this.scheduleService.deleteScheduleById(id);
-        return "redirect:/schedule/AllSchedule";
+    @GetMapping("/cetak-schedule")
+    public void printReport() throws Exception{
+        response.setContentType(("application/pdf"));
+        response.setHeader("Content-Disposition", "attachment; filename=\"Schedule_list.pdf\"");
+        JasperPrint jasperPrint = this.scheduleService.generateJasperPrint();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+
     }
+//    @GetMapping("/delete/schedule/success")
+//    public String deleteScheduleById(Model model) {
+//        return "success-delete-schedule";
+//    }
 }
