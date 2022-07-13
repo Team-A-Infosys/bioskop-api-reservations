@@ -28,7 +28,7 @@ public class ReportPDFService {
     }
 
     public JasperPrint generateJasperPrint() throws Exception{
-       InputStream fileReport = new ClassPathResource("reports/film.jasper").getInputStream();
+       InputStream fileReport = new ClassPathResource("reports/film-report.jasper").getInputStream();
 
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fileReport);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource.getConnection());
