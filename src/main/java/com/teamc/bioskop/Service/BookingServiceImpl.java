@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +56,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking createBooking(Booking booking) {
+        booking.setCreatedAt(ZonedDateTime.now(ZoneId.of("Asia/Tokyo")));
+        booking.setUpdatedAt(ZonedDateTime.now(ZoneId.of("Asia/Tokyo")));
         return this.bookingRepository.save(booking);
     }
 
