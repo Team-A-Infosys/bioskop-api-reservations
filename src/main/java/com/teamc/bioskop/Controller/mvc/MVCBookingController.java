@@ -1,4 +1,4 @@
-package com.teamc.bioskop.Controller.mvc;
+package com.teamc.bioskop.Controller.MVC;
 
 import com.teamc.bioskop.Exception.ResourceNotFoundException;
 import com.teamc.bioskop.Model.Booking;
