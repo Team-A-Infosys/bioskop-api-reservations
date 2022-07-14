@@ -8,29 +8,34 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h2>Update Seats</h2>
-        <form action="#" th:action="@{/update/seat/{id}(id=${seat.seatId})}" th:object="${seat}" method="post">
-            <div class="mb-3">
-                <label class="form-label">Nama Studio</label>
-                <input type="text" th:field="*{studioName}" id="studioName" placeholder="Studio X">
-                <span th:if="${#fields.hasErrors('studioName')}" th:errors="*{studioName}"></span>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-5 py-4">
+                <h2 class="col-md-6">Update Seats</h2>
+                <a class="btn btn-primary btn-sm" th:href="@{/management}">Back</a>
+                <form class="row g-3" action="#" th:action="@{/update/seat/{id}(id=${seat.seatId})}" th:object="${seat}" method="post">
+                    <div class="col-md-6">
+                        <label class="form-label">Nama Studio</label>
+                        <input type="text" th:field="*{studioName}" id="studioName" placeholder="Studio X">
+                        <span th:if="${#fields.hasErrors('studioName')}" th:errors="*{studioName}"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nomor Kursi</label>
+                        <input type="text" th:field="*{seatNumber}" id="seatNumber" placeholder="Nomor Kursi [1-99]">
+                        <span th:if="${#fields.hasErrors('seatNumber')}" th:errors="*{seatNumber}"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Is Available</label>
+                        <select class="form-select" name="isAvailable" aria-label="Default select example">
+                            <option selected>Status Kursi</option>
+                            <option value="AVAILABLE">AVAILABLE</option>
+                            <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update Seat</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Nomor Kursi</label>
-                <input type="text" th:field="*{seatNumber}" id="seatNumber" placeholder="Nomor Kursi [1-99]">
-                <span th:if="${#fields.hasErrors('seatNumber')}" th:errors="*{seatNumber}"></span>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Is Available</label>
-                <select class="form-select" name="isAvailable" aria-label="Default select example">
-                    <option selected>Status Kursi</option>
-                    <option value="AVAILABLE">AVAILABLE</option>
-                    <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-success">Update Seat</button>
-        </form>
+        </div>
     </div>
 </body>
 </html>

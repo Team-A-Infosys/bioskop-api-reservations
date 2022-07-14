@@ -1,14 +1,18 @@
-package com.teamc.bioskop.Controller.MVC;
+package com.teamc.bioskop.Controller.mvc;
 
 import com.teamc.bioskop.Model.User;
 import com.teamc.bioskop.Service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -20,7 +24,20 @@ public class MVCUserController {
      */
     @GetMapping("/getusers")
     public String showUserList(Model model) {
-        model.addAttribute("users", userService.getAll());
+        return paginatedSeats(1, model);
+    }
+
+    @GetMapping("/getusers/{page}")
+    public String paginatedSeats(@PathVariable(value="page") int pageNumber, Model model){
+        int pageSize = 10;
+        Page<User> usersPage = this.userService.findPaginated(pageNumber, pageSize);
+        List<User> usersList = usersPage.getContent();
+
+        model.addAttribute("currentPage",pageNumber);
+        model.addAttribute("totalPages",usersPage.getTotalPages());
+        model.addAttribute("totalItems",usersPage.getTotalElements());
+        model.addAttribute("users",usersPage);
+
         return "users";
     }
 
@@ -36,9 +53,10 @@ public class MVCUserController {
     }
 
     @PostMapping("/added-user")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String newUser(@ModelAttribute("user") User user, RedirectAttributes redirAttrs) {
         this.userService.createUser(user);
-        return "success-added-user";
+        redirAttrs.addFlashAttribute("success", " Your data is saved.");
+        return "redirect:/getusers";
     }
 
     /**
@@ -53,19 +71,21 @@ public class MVCUserController {
 
     @PostMapping("/update/user/{id}")
     public String updateUserById(@PathVariable("id") Long id,
-                                 @ModelAttribute("user") User user) {
+                                 @ModelAttribute("user") User user, RedirectAttributes redirAttrs) {
         user.setUserId(id);
         this.userService.updateUser(user, id);
-        return "success-updated-user";
+        redirAttrs.addFlashAttribute("updated", " Keep Your Data Relevant, Right?.");
+        return "redirect:/getusers";
     }
 
     /**
      * Delete User
      */
     @GetMapping("/delete/user/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    public String deleteUser(@PathVariable("id") long id, Model model, RedirectAttributes redirAttrs) {
         User user = userService.findbyid(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id : " + id));
         userService.deleteUserById(id);
+        redirAttrs.addFlashAttribute("deleted", " Free Space Created.");
         return "redirect:/getusers";
     }
 }

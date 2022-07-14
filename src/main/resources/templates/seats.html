@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Show All Seats Data</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-          crossorigin="anonymous">
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -20,13 +17,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<!--    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">-->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Variables CSS Files. Uncomment your preferred color scheme -->
     <!-- <link href="assets/css/variables.css" rel="stylesheet"> -->
@@ -46,65 +44,197 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 </head>
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top" data-scrollto-offset="0">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>CineCat<span>.</span></h1>
-            </a>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link scrollto" href="index.html#header">Home</a></li>
-                    <li><a class="nav-link scrollto" th:href="@{/films}" target="_blank">Films</a></li>
-                    <li><a class="nav-link scrollto" th:href="@{/getseats}" target="_blank">Seats</a></li>
-                    <li><a class="nav-link scrollto" th:href="@{/schedule/AllSchedule}" target="_blank">Schedule</a></li>
-                    <li><a class="nav-link scrollto" th:href="@{/bookings}" target="_blank">Booking</a></li>
-                    <li><a class="nav-link scrollto" href="index.html#about" >About</a></li>
-                    <li><a class="nav-link scrollto" href="index.html#faq">FAQ</a></li>
-                    <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
-
-                    <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle d-none"></i>
-            </nav><!-- .navbar -->
-
-            <a class="btn-getstarted scrollto" href="index.html#about">Get Your Tickets</a>
-
-        </div>
-    </header><!-- End Header -->
-
-    <section id="hero-animated" class="hero-animated d-flex align-items-center">
-        <div class="container">
+    <div class="container-sm">
+        <section id="hero-animated" class="hero-animated d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </symbol>
+                <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                </symbol>
+                <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </symbol>
+            </svg>
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">-->
+<!--                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>-->
+<!--            </svg>-->
+            <div class="container-fluid">
+                <div class="alert alert-success d-flex align-items-center" role="alert" th:if="${success}">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <strong>Sweet!</strong><div th:text="${success}"></div>
+                </div>
+                <div class="alert alert-primary d-flex align-items-center" role="alert" th:if="${updated}">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                    <strong>Nicely Done!</strong><div th:text="${updated}"></div>
+                </div>
+                <div class="alert alert-danger d-flex align-items-center" role="alert" th:if="${deleted}">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <strong>Nice!</strong><div th:text="${deleted}"></div>
+                </div>
             <div th:switch="${seats}">
+
                 <h2 th:case="null">No seats yet!</h2>
                 <div th:case="*">
                     <h2>Kursi Bioskop</h2>
                     <table class="table">
-                        <thead>
-                        <tr>
-                            <th>No Kursi</th>
-                            <th>Studio</th>
-                            <th>Available</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="seat : ${seats}">
-                            <td th:text="${seat.seatNumber}"></td>
-                            <td th:text="${seat.studioName}"></td>
-                            <td th:text="${seat.isAvailable}"></td>
-                        </tr>
-                        </tbody>
+                        <div class="container mt-4">
+                            <div class="row justify-content-between">
+                                <div class="col-sm-4">
+                                    <a class="btn btn-primary" th:href="@{/management}">Back</a>
+                                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNewSeat">Add New Seat</a>
+                                    <a th:href="@{/print-seatsreport}" class="btn btn-primary">Print Report</a>
+                                </div>
+                                <!-- Filter Seat By Status isAvailable -->
+                                <div class="col-sm-4">
+                                    <form action="#" method="get" th:action="@{/seats-status}">
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect04" name="isAvailable">
+                                                <option disabled selected value>Show By Status</option>
+                                                <option value="AVAILABLE">Available</option>
+                                                <option value="NOT_AVAILABLE">Not Available</option>
+                                            </select>
+                                            <button class="btn btn-outline-secondary" id="button-addon2" type="submit"><i class="bi bi-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <thead>
+                            <tr>
+                                <th>No Kursi</th>
+<!--                                <th>Studio<a th:href="@{'/getseats/' + ${currentPage} + '?sortStudio=studioName&sortDir=' + ${reverseSortDir}}"><i class="bi bi-arrow-down-up"></i></a></th>-->
+                                <th>Studio</th>
+                                <th>Status</th>
+                                <td>Edit</td>
+                                <td>Delete</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="seat : ${seats}">
+                                <td th:text="${seat.seatNumber}"></td>
+                                <td th:text="${seat.studioName}"></td>
+                                <td th:text="${seat.isAvailable}"></td>
+                                <td><a class="badge bg-warning" th:href="@{/update/seat/{id}(id=${seat.seatId})}"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')" th:href="@{/delete/seat/{id}(id=${seat.seatId})}"><i class="bi bi-x-circle"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </div>
                     </table>
+
+                    <!-- Pagination Section -->
+                    <div th:if="${totalPages <= 10}">
+                        <span th:if="${page!=null or #httpServletRequest.requestURI == '/getseats'}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        Total Rows: [[${totalItems}]]
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                                </span>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/getseats/' + ${currentPage + 1} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${totalPages} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+                        <span th:if="${#request.getParameter('isAvailable') != null}">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6">
+                                        Total Rows: [[${totalItems}]]
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${currentPage - 1}(isAvailable=${param.isAvailable})}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
+                                                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                                    <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${i}(isAvailable=${param.isAvailable})}" th:if="${currentPage != i}">[[${i}]]</a></li>
+                                                    <li class="page-item active"><span class="page-link"th:unless="${currentPage != i}">[[${i}]]</span></li>
+                                                </span>
+                                                <li class="page-item"> <a class="page-link" th:href="@{'/seats-status/' + ${currentPage + 1}(isAvailable=${param.isAvailable})}"th:if="${currentPage < totalPages}">Next</a></li>
+                                                <li class="page-item"><span class="page-link disabled" th:unless="${currentPage < totalPages}">Next</span></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/seats-status/' + ${totalPages}(isAvailable=${param.isAvailable})}" th:if="${currentPage < totalPages}">Last</a></li>
+                                                <li class="page-item"> <span class="page-link disabled" th:unless="${currentPage < totalPages}">Last</span></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+                    </div>
                 </div>
-            <!--    <p><a href="/signup">Add a new user</a></p>-->
+
+            </div>
+
+        </div>
+        </section>
+    </div>
+
+    <!-- Modal Input Seat-->
+    <div class="modal fade" id="modalNewSeat" tabindex="-1" aria-labelledby="modalNewSeatLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNewSeatLabel">Input Kursi Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{/added-seats}" th:object="${seats}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Studio</label>
+                            <select class="form-select" name="studioName" id="studioName" aria-label="Default select example">
+                                <option selected>Pilih Studio</option>
+                                <option value="Studio A">Studio A</option>
+                                <option value="Studio B">Studio B</option>
+                                <option value="Studio C">Studio C</option>
+                                <option value="Studio D">Studio D</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No Kursi</label>
+                            <input class="form-control" name="seatNumber" id="seatNumber" placeholder="Nomor Kursi">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Is Available</label>
+                            <select class="form-select" name="isAvailable" aria-label="Default select example">
+                                <option selected>Status Kursi</option>
+                                <option value="AVAILABLE">AVAILABLE</option>
+                                <option value="NOT_AVAILABLE">NOT AVAILABLE</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

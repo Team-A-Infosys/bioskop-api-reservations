@@ -22,12 +22,13 @@
                             <div class="col-sm-4">
                                 <a class="btn btn-primary btn-sm" th:href="@{/management}">Back</a>
                                 <a class="btn btn-success btn-sm" th:href="@{/management/add-film}">Add Film</a>
+                                <a class="btn btn-info text-light btn-sm" th:href="@{/print}">Print Report</a>
                             </div>
                             <div class="col-sm-4">
                                 <form action="#" method="get" th:action="@{/management/films-status}">
                                     <div class="input-group mb-3">
                                         <select class="form-select" id="inputGroupSelect04" name="isPlaying">
-                                            <option value="">Choose</option>
+                                            <option disabled selected value>Choose</option>
                                             <option value="PLAYING">Playing</option>
                                             <option value="NOT_PLAYING">Not Playing</option>
                                         </select>
@@ -49,6 +50,7 @@
                         <tr th:each="film : ${listFilms}">
                             <td th:text="${film.name}"></td>
                             <td th:text="${film.isPlaying}"></td>
+                            <td><img th:src="@{/showFile/{fileId}(fileId=${film.attachment.id})}" class="img-fluid w-25" alt=""></td>
                             <td><a class="badge bg-warning" th:href="@{/management/edit-film/{id}(id=${film.filmId})}"><i class="bi bi-pencil-square"></i></a></td>
                             <td><a class="badge bg-danger" onclick="return confirm('Yakin mau menghapus data ini ?')" th:href="@{/management/delete-film/{id}(id=${film.filmId})}"><i class="bi bi-x-circle"></i></a></td>
                         </tr>
@@ -83,7 +85,7 @@
                             </div>
                         </span>
 
-                    <span th:if="${#request.getParameter('isPlaying') != null}">
+                        <span th:if="${#request.getParameter('isPlaying') != null}">
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8">

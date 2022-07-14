@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AttachmentServiceImpl implements AttachmentService{
@@ -30,5 +32,10 @@ public class AttachmentServiceImpl implements AttachmentService{
     @Override
     public Attachment getAttachment(String fileId) throws Exception {
         return this.attachmentRepository.findById(fileId).orElseThrow(()->new Exception("Could not find file id"));
+    }
+
+    @Override
+    public List<Attachment> findAllAttachment() {
+        return this.attachmentRepository.findAll();
     }
 }
