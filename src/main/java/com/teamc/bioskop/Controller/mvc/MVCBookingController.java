@@ -67,9 +67,10 @@ public class MVCBookingController {
     }
 
     @PostMapping("/tambah-bookings")
-    public String submitNewBooking(@ModelAttribute("bookings") Booking booking) {
+    public String submitNewBooking(@ModelAttribute("bookings") Booking booking, RedirectAttributes redirectAttributes) {
         this.bookingService.createBooking(booking);
-        return "success";
+        redirectAttributes.addFlashAttribute("success","success create booking");
+        return "redirect:/";
     }
 
     @GetMapping("/update-bookings/{id}")
