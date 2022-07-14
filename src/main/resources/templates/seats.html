@@ -138,7 +138,7 @@
                                     <div class="col-lg-6">
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination">
-                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${currentPage - 1}}"th:if="${currentPage != 1}">Previous</a></li>
+                                                <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${currentPage - 1} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}"th:if="${currentPage != 1}">Previous</a></li>
                                                 <li class="page-item"><span class="page-link disabled" th:unless="${currentPage != 1}">Previous</span></li>
                                                 <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                                                     <li class="page-item"><a class="page-link" th:href="@{'/getseats/' + ${i} + '?sortStudio=' + ${sortStudio} + '&sortDir=' + ${sortDir}}" th:if="${currentPage != i}">[[${i}]]</a></li>
